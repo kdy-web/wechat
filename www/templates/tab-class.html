@@ -1,0 +1,337 @@
+<ion-view hide-nav-bar="true">
+	<style type="text/css">
+		ion-slide div {
+			width: 100%;
+			height: 3.75rem;
+		}
+		
+		ion-slide div img {
+			width: 100%;
+			height: 100%;
+		}
+		
+		#swiper-container2 {
+			width: 100%;
+			text-align: center;
+			height: 0.88rem;
+			line-height: 0.88rem;
+			font-size: 0.3rem;
+			border-bottom: 1px solid #F0F0F0;
+			background: #FFFFFF;
+			
+		}
+		
+		#swiper-container3 {
+			width: 100%;
+			height: auto;
+			
+		}
+	
+		#swiper-container3 .swiper-wrapper  .swiper-slide{
+			height: 10rem;
+			
+		}
+		.active-nav {
+			color: #2B94FA;
+		}
+		
+		.row {
+			padding: 0;
+		}
+		
+		.col {
+			padding: 0;
+		}
+		
+		.col p {
+			margin: 0;
+			margin-top: 0.24rem;
+			overflow: hidden;
+			-webkit-line-clamp: 1;
+			display: -webkit-box;
+			text-overflow: ellipsis;
+			-webkit-box-orient: vertical;
+		}
+		
+		#swiper-container3 .class_pic {
+			width: 3.3rem;
+			height: 1.94rem;
+			border: 1px solid #979797;
+			border-radius: 0.08rem;
+			position: relative;
+		}
+		
+		.class_price {
+			width: 100%;
+			height: 0.44rem;
+			background: rgba(0, 0, 0, 0.3);
+			position: absolute;
+			bottom: 0;
+		}
+		
+		.class_price span {
+			float: right;
+			font-size: 0.24rem;
+			color: #FFFFFF;
+			margin-right: 0.1rem;
+			margin-top: 0.04rem;
+		}
+		
+		.search_box {
+			width: 100%;
+			height: 0.88rem;
+			padding-top: 0.22rem;
+			box-sizing: border-box;
+			border-bottom: 1px solid #F0F0F0;
+			position: fixed;
+			z-index: 3;
+		}
+		
+		.search_box * {
+			float: left;
+		}
+		
+		.search_icon {
+			width: 0.44rem;
+			height: 0.44rem;
+			margin-left: 0.25rem;
+		}
+		
+		.search_icon img {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.search_box ul {}
+		
+		.search_box ul li {
+			width: 2.27rem;
+			height: 0.5rem;
+			line-height: 0.5rem;
+			text-align: center;
+			font-size: 0.3rem;
+			color: #8E8E8E;
+			letter-spacing: 0;
+		}
+		
+		.grade_box {
+			position: absolute;
+			top: 0.5rem;
+			background: #FFFFFF;
+			z-index: 999999;
+			display: none;
+		}
+		
+		.grade_box li {
+			border-bottom: 1px solid #F0F0F0;
+		}
+		
+		#search {
+			position: relative;
+		}
+		
+		#search img {
+			width: 0.44rem;
+			height: 0.44rem;
+			position: absolute;
+			left: 0.55rem;
+			top: 0.28rem;
+		}
+	</style>
+	<div class="search_box" id="search_title">
+		<div class="search_icon">
+			<img src="../img/视频列表(收费).png" />
+		</div>
+		<ul>
+			<li style="border-right: 1px solid #F0F0F0;color: #2B94FA;">精选</li>
+			<li style="border-right: 1px solid #F0F0F0;">最热</li>
+			<li style="position: relative;" class="grade_btn"><span style="margin-left: 0.8rem;margin-right: 0.2rem;">年级</span>
+				<img src="../img/Group 8 Copy.png" style="transform: rotate(90deg);width: 0.10rem;height: 0.17rem;position: relative;top: 0.13rem;" />
+				<ul class="grade_box">
+					<li>高一</li>
+					<li>高二</li>
+					<li>高三</li>
+				</ul>
+
+			</li>
+		</ul>
+	</div>
+	<div class="search_box" id="search" style="display: none;">
+		<input type="text" style="border: 1px solid #CDCDCD;border-radius:1rem;width: 5.9rem;height: 0.54rem;margin-left:0.3rem ;text-indent: 0.9rem;" />
+		<div style="font-size: 0.28rem;color: #8E8E8E;margin-left: 0.36rem;position: relative;top: 0.08rem;" id="cancel">取消</div>
+		<img src="../img/视频列表(收费).png" />
+	</div>
+	
+	<ion-content style="margin-top: 0.88rem;" id="scroll"  delegate-handle="mainScroll">
+		<ion-slide-box show-pager="false" auto-play="true" does-continue="true" slide-interval=3000>
+			<ion-slide>
+				<div class="box blue"><img src="../img/timg (1).jpg" /></div>
+			</ion-slide>
+			<ion-slide>
+				<div class="box yellow"><img src="../img/timg.jpg" /></div>
+			</ion-slide>
+			<ion-slide on-slide-changed="slideHasChanged(index)">
+				<div class="box pink"><img src="../img/timg (1).jpg" /></div>
+			</ion-slide>
+		</ion-slide-box>
+		<div id="scroll_box">
+			<div class="swiper-container swiper-container-horizontal  " id="swiper-container2">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide active-nav" style="width: 1.5rem;">
+						语文</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						数学</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						英语</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						物理</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						生物</div>
+					<div class="swiper-slide" style="width: 1.5rem;">
+						化学</div>
+					<div class="swiper-slide" style="width:1.5rem;">
+						历史</div>
+					<div class="swiper-slide" style="width:1.5rem;">
+						政治</div>
+					<div class="swiper-slide" style="width:1.5rem;">
+						地理</div>
+				</div>
+			</div>
+			<div class="swiper-container swiper-container-horizontal" id="swiper-container3">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide ">
+						<div class="row" ng-repeat="Chinese_data  in   Chinese">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="Chinese in Chinese_data   ">
+								<div class="class_pic">
+									<img src="{{Chinese.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{Chinese.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{Chinese.title}}</p>
+							</div>
+                           
+						</div>
+                       
+					</div>
+					<div class="swiper-slide ">
+						<div class="row" ng-repeat="Math_data  in   Math">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="Math in Math_data   ">
+								<div class="class_pic">
+									<img src="{{Math.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{Math.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{Math.title}}</p>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="swiper-slide ">
+						<div class="row" ng-repeat="English_data  in   English">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="English in English_data   ">
+								<div class="class_pic">
+									<img src="{{English.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{English.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{English.title}}</p>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="swiper-slide ">
+						<div class="row" ng-repeat="physical_data  in   physical">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="physical in physical_data   ">
+								<div class="class_pic">
+									<img src="{{physical.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{physical.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{physical.title}}</p>
+							</div>
+
+						</div></div>
+					<div class="swiper-slide ">
+					<div class="row" ng-repeat="chemisty_data  in   chemisty">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="chemisty in chemisty_data   ">
+								<div class="class_pic">
+									<img src="{{chemisty.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{chemisty.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{chemisty.title}}</p>
+							</div>
+
+						</div>
+					
+					
+					</div>
+					<div class="swiper-slide ">
+					<div class="row" ng-repeat="biology_data  in   biology">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="biology in biology_data   ">
+								<div class="class_pic">
+									<img src="{{biology.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{biology.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{biology.title}}</p>
+							</div>
+
+						</div>	
+					
+					</div>
+					<div class="swiper-slide ">
+						<div class="row" ng-repeat="history_data  in   history">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="history in history_data   ">
+								<div class="class_pic">
+									<img src="{{history.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{history.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{history.title}}</p>
+							</div>
+
+						</div>	</div>
+					<div class="swiper-slide ">
+						<div class="row" ng-repeat="politics_data  in   politics">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="politics in politics_data   ">
+								<div class="class_pic">
+									<img src="{{politics.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{politics.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{politics.title}}</p>
+							</div>
+
+						</div></div>
+					<div class="swiper-slide ">
+							<div class="row" ng-repeat="geograply_data  in   geograply">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="geograply in geograply_data   ">
+								<div class="class_pic">
+									<img src="{{geograply.avaitar}}" style="width: 100%;height: auto;" />
+									<div class="class_price">
+										<span>￥ {{geograply.price}}.00</span>
+									</div>
+								</div>
+								<p style="text-align: center;">{{geograply.title}}</p>
+							</div>
+
+						</div></div>
+				</div>
+			</div>
+
+		</div>
+        
+	</ion-content>
+
+</ion-view>

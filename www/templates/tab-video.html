@@ -28,6 +28,7 @@
 			.content_title {
 				width: 100%;
 				height: 0.44rem;
+				margin-top: 0.3rem;
 			}
 			
 			.title_ver {
@@ -261,14 +262,62 @@
 			.zy_media {
 				z-index: 999999999
 			}
+			.video_title{
+				margin-top: 0.3rem;
+				font-size: 0.34rem;
+color: #232427;
+font-weight: bold;
+				padding-left: 0.3rem;
+				box-sizing: border-box;
+			}
+			.video_btn_box{
+				width: 100%;
+				height: 0.5rem;
+				margin-top: 0.24rem;
+			
+			}
+			.video_btn_box div{
+				border: 1px solid #2B94FA;
+				text-align: center;
+				line-height: 0.5rem;
+				font-size: 0.28rem;
+				color: #2B94FA;
+              border-radius: 1rem;
+				float: left;
+			}
+				.slide-in-right {  -webkit-transform: translateX(-100%);  transform: translateX(100%);}.slide-in-right.ng-enter, .slide-in-right > .ng-enter {  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;}.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {  -webkit-transform: translateX(0);  transform: translateX(0);}.slide-in-right.ng-leave, .slide-in-right > .ng-leave {  -webkit-transition: all ease-in-out 250ms;  transition: all ease-in-out 250ms;}.
+
+.slide-in-left {  -webkit-transform: translateX(-100%);  transform: translateX(100%);}.slide-in-left.ng-enter, .slide-in-left > .ng-enter {  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;}.slide-in-left.ng-enter-active, .slide-in-left > .ng-enter-active {  -webkit-transform: translateX(0);  transform: translateX(0);}.slide-in-left.ng-leave, .slide-in-left > .ng-leave {  -webkit-transition: all ease-in-out 250ms;  transition: all ease-in-out 250ms;}
+ #qrcode{
+            /*text-align: center;*/
+            /*display: table-cell;*/
+            /*width: 96px;*/
+            /*height: 96px;*/
+            /*vertical-align:middle;*/
+            /*position: relative;*/
+        }
 		</style>
 		<div class="playvideo">
 			<div class="zy_media">
-
+  
 			</div>
 
 		</div>
-		<ion-content style="margin-top: 4.9rem;background: white;">
+		<ion-content style="margin-top: 4.2rem;background: white;">
+			<div id="content_top">
+				
+		
+			<p class="video_title">{{video_data.title}}</p>
+			<div class="video_btn_box">
+				<div style="width: 1.16rem;height: 0.5rem;margin-left: 0.3rem;" ng-click="modal_second.show()">关注</div>
+				<div style="width: 2rem;height: 0.5rem;margin-left: 0.24rem;" ng-click="modal_third.show()">
+					我的邀请卡
+				</div>
+				<div style="width: 1.72rem;height: 0.5rem;margin-left: 0.23rem;" ng-click="modal.show()">
+					联系客服
+				</div>
+			</div>
+				</div>
 			<div class="content_title">
 				<div class="title_ver"></div>
 				<span>讲师介绍</span>
@@ -293,11 +342,77 @@
 			<div class="content">
 				{{video_data.brief}}
 			</div>
-
+            <div style="height: 1rem;"></div>
 		</ion-content>
 		<div class="bar bar-footer buy_box" style="height: 1rem;" ng-click="myPopup()">
 			<button class="button button-clear">Left</button>
 			<div class="title">下载APP看视频</div>
 			<button class="button button-clear">Right</button>
 		</div>
+		<script id="templates/modal.html" type="text/ng-template">
+  	 <div id="add-view" class="modal slide-in-up"  style="background:rgba(0,0,0,0.5)" ng-click="modal.hide()">
+   
+     <div  style="position: fixed;z-index: 1000;width: 5rem;height: 4.4rem;background: #FFFFFF;border-radius: 0.2rem;top: 0;bottom: 0;left: 0;right: 0;margin: auto;" ng-click="$event.stopPropagation()">
+					
+					<!--<img src="http://qrcode.leipi.org/js.html?qw=150&qc=&ql=../img/logo@1.5x.png&lw=32&lh=32&bor=0&op=img" >
+			
+				
+<script type="text/javascript">/* 2014/07/19 21:09 */var _qrContent='',_qrLogo='../img/logo@1.5x.png',_qrWidth=150,_lgWidth = 32,_lgHeight = 32,_lgBor = 0;if(!_qrContent) var _qrContent =escape(document.location.href);document.write(unescape("%3Cscript src='http://qrcode.leipi.org/js.html?qw="+_qrWidth+"&qc="+escape(_qrContent)+"&ql="+escape(_qrLogo)+"&lw="+_lgWidth+"&lh="+_lgHeight+"&bor="+_lgBor+"' type='text/javascript'%3E%3C/script%3E"));</script>				-->
+				<img src="../img/微信客服二维码.jpeg" style="width: 2rem;height: 2rem;position: absolute;left: 1.5rem;top: 0.63rem;"/>
+				<div style="position: absolute;top: 2.94rem;width: 2.1rem;height: 0.84rem;left: 1.45rem;font-size: 0.3rem;color: #232427;text-align: center;">长按二维码<br />联系学果果客服</div>
+					
+					
+					
+					</div>
+					 
+  
+  </div>
+  </script>
+				<script id="templates/modal_second.html" type="text/ng-template">
+  	 <div id="add-view" class="modal slide-in-up"  style="background:rgba(0,0,0,0.5)" ng-click="modal_second.hide()">
+   
+     <div  style="position: fixed;z-index: 1000;width: 5rem;height: 4.4rem;background: #FFFFFF;border-radius: 0.2rem;top: 0;bottom: 0;left: 0;right: 0;margin: auto;" ng-click="$event.stopPropagation()">
+					
+					<!--<img src="http://qrcode.leipi.org/js.html?qw=150&qc=&ql=../img/logo@1.5x.png&lw=32&lh=32&bor=0&op=img" >
+			
+				
+<script type="text/javascript">/* 2014/07/19 21:09 */var _qrContent='',_qrLogo='../img/logo@1.5x.png',_qrWidth=150,_lgWidth = 32,_lgHeight = 32,_lgBor = 0;if(!_qrContent) var _qrContent =escape(document.location.href);document.write(unescape("%3Cscript src='http://qrcode.leipi.org/js.html?qw="+_qrWidth+"&qc="+escape(_qrContent)+"&ql="+escape(_qrLogo)+"&lw="+_lgWidth+"&lh="+_lgHeight+"&bor="+_lgBor+"' type='text/javascript'%3E%3C/script%3E"));</script>				-->
+				<img src="../img/C226EEB8-61A3-BAC3-015F-89E6C30EAA93.png" style="width: 2rem;height: 2rem;position: absolute;left: 1.5rem;top: 0.63rem;"/>
+				<div style="position: absolute;top: 2.94rem;width: 2.4rem;height: 0.84rem;left: 1.3rem;font-size: 0.3rem;color: #232427;text-align: center;">长按二维码<br />关注学果果公众号</div>
+					
+					
+					
+					</div>
+					 
+  
+  </div>
+  </script>
+  
+  
+  
+		<script id="templates/modal_third.html" type="text/ng-template">
+  	 <div id="add-view" class="modal slide-in-up"  style="background: url(../img/邀请卡背景.png) no-repeat;" ng-click="modal_third.hide()">
+   
+     <div  style="position: fixed;z-index: 1000;width: 5.5rem;height: 7.8rem;background: rgba(255,255,255,0.79);border-radius: 0.2rem;top: 1rem;left: 1rem;" ng-click="$event.stopPropagation()">
+					
+					<!--<img src="http://qrcode.leipi.org/js.html?qw=150&qc=&ql=../img/logo@1.5x.png&lw=32&lh=32&bor=0&op=img" >
+			
+				
+<script type="text/javascript">/* 2014/07/19 21:09 */var _qrContent='',_qrLogo='../img/logo@1.5x.png',_qrWidth=150,_lgWidth = 32,_lgHeight = 32,_lgBor = 0;if(!_qrContent) var _qrContent =escape(document.location.href);document.write(unescape("%3Cscript src='http://qrcode.leipi.org/js.html?qw="+_qrWidth+"&qc="+escape(_qrContent)+"&ql="+escape(_qrLogo)+"&lw="+_lgWidth+"&lh="+_lgHeight+"&bor="+_lgBor+"' type='text/javascript'%3E%3C/script%3E"));</script>				-->
+				<img src="{{video_data.tavaitar}}" style="width: 1.5rem;height: 1.5rem;border-radius:50% ;"/>
+				<div style="position: absolute;top: 2.94rem;width: 2.4rem;height: 0.84rem;left: 1.3rem;font-size: 0.3rem;color: #232427;text-align: center;">长按二维码<br />关注学果果公众号</div>
+					
+					
+					
+					</div>
+					 
+  
+  </div>
+  </script>
+		
+		
+		
+		
+		
+		
 </ion-view>

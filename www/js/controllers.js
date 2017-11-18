@@ -162,17 +162,16 @@ angular.module('starter.controllers', [])
 		$scope.geograply=[];
 		$scope.history=[];
 		$scope.politics=[];
-       $rootScope.range = 1;
-       $.ajax({
-       	  method: "GET",
-			url: "https://www.xueguoguo.cn/api/v1/colleges/brief/"+1 ,
+       $rootScope.range = 1
+       
+		$http({
+			method: "GET",
+			url: "http://139.199.203.171:9000/wxapi/Course?"+"rang="+ $rootScope.range ,
 			data: {
 
 			}
-       }).done(function(result) {
-       	console.log(result)
-       	result=JSON.parse(result)
-			
+		}).success(function(result) {
+			console.log(result)
          for(var i=0;i<result.list.length;i++){
 				if(result.list[i].subject=="语文"){
 					$scope.Chinese.push(result.list[i])

@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
       $timeout(function(){
       		$http({
 			method: "GET",
-			url: "https://www.xueguoguo.cn/api/v1/colleges/luqu/"+1 ,
+			url: "http://www.xueguoguo.cn/wxapi/Course?range=1" ,
 			data: {
 
 			}

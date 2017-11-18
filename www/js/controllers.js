@@ -165,7 +165,7 @@ angular.module('starter.controllers', [])
        $rootScope.range = 1;
        $.ajax({
        	  method: "GET",
-			url: "http://139.199.203.171:9000/wxapi/Course?"+"rang="+ $rootScope.range ,
+			url: "https://www.xueguoguo.cn/api/v1/colleges/brief/"+1 ,
 			data: {
 
 			}

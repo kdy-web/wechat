@@ -170,7 +170,8 @@ angular.module('starter.controllers', [])
 							"height": "100%"
 						})
 					})
-		$http({
+      $timeout(function(){
+      		$http({
 			method: "GET",
 			url: "http://www.xueguoguo.cn/wxapi/Course?"+"rang="+ $rootScope.range ,
 			data: {
@@ -221,6 +222,8 @@ angular.module('starter.controllers', [])
         len = $scope.Chinese.length
 		$("#swiper-container3").css("height", len  * 2.88+ "rem")
 		})
+      })
+	
 $scope.govideo=function(id){
 	$('#swiper-container2').hide()
 	window.location="#/tab/video/"+id

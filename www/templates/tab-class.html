@@ -200,8 +200,8 @@
 			<div class="swiper-container swiper-container-horizontal" id="swiper-container3">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide ">
-						<div class="row" ng-repeat="Chinese_data  in   Chinese">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="Chinese in Chinese_data   ">
+						<div class="row" ng-repeat="Chinese_data  in   Chinese" >
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="Chinese in Chinese_data  "   ng-click="govideo(Chinese.id)">
 								<div class="class_pic">
 									<img src="{{Chinese.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -216,7 +216,7 @@
 					</div>
 					<div class="swiper-slide ">
 						<div class="row" ng-repeat="Math_data  in   Math">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="Math in Math_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="Math in Math_data  " ng-click="govideo(Math.id)">
 								<div class="class_pic">
 									<img src="{{Math.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -231,7 +231,7 @@
 					</div>
 					<div class="swiper-slide ">
 						<div class="row" ng-repeat="English_data  in   English">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="English in English_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="English in English_data   " ng-click="govideo(English.id)">
 								<div class="class_pic">
 									<img src="{{English.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -246,7 +246,7 @@
 					</div>
 					<div class="swiper-slide ">
 						<div class="row" ng-repeat="physical_data  in   physical">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="physical in physical_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="physical in physical_data   " ng-click="govideo(physical.id)">
 								<div class="class_pic">
 									<img src="{{physical.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -259,7 +259,7 @@
 						</div></div>
 					<div class="swiper-slide ">
 					<div class="row" ng-repeat="chemisty_data  in   chemisty">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="chemisty in chemisty_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="chemisty in chemisty_data   " ng-click="govideo(chemisty.id)">
 								<div class="class_pic">
 									<img src="{{chemisty.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -275,7 +275,7 @@
 					</div>
 					<div class="swiper-slide ">
 					<div class="row" ng-repeat="biology_data  in   biology">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="biology in biology_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="biology in biology_data   " ng-click="govideo(biology.id)">
 								<div class="class_pic">
 									<img src="{{biology.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -290,7 +290,7 @@
 					</div>
 					<div class="swiper-slide ">
 						<div class="row" ng-repeat="history_data  in   history">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="history in history_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="history in history_data   " ng-click="govideo(history.id)">
 								<div class="class_pic">
 									<img src="{{history.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -303,7 +303,7 @@
 						</div>	</div>
 					<div class="swiper-slide ">
 						<div class="row" ng-repeat="politics_data  in   politics">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="politics in politics_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="politics in politics_data   " ng-click="govideo(politics.id)">
 								<div class="class_pic">
 									<img src="{{politics.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">
@@ -316,7 +316,7 @@
 						</div></div>
 					<div class="swiper-slide ">
 							<div class="row" ng-repeat="geograply_data  in   geograply">
-							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="geograply in geograply_data   ">
+							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="geograply in geograply_data   " ng-click="govideo(geograply.id)">
 								<div class="class_pic">
 									<img src="{{geograply.avaitar}}" style="width: 100%;height: auto;" />
 									<div class="class_price">

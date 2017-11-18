@@ -163,7 +163,13 @@ angular.module('starter.controllers', [])
 		$scope.history=[];
 		$scope.politics=[];
        $rootScope.range = 1
-       
+       $("img").one("error", function(e) {
+						$(this).attr("src", "img/img1.png");
+						$(this).css({
+							"width": "100%",
+							"height": "100%"
+						})
+					})
 		$http({
 			method: "GET",
 			url: "http://139.199.203.171:9000/wxapi/Course?"+"rang="+ $rootScope.range ,
@@ -215,8 +221,16 @@ angular.module('starter.controllers', [])
         len = $scope.Chinese.length
 		$("#swiper-container3").css("height", len  * 2.88+ "rem")
 		})
-
-
+$scope.govideo=function(id){
+	$('#swiper-container2').hide()
+	window.location="#/tab/video/"+id
+}
+window.onhashchange=function(e){
+	if(e.newURL.indexOf("#/tab/class")!=-1){
+		$('#swiper-container2').show()
+	}
+	
+}
 
 	})
 
@@ -239,10 +253,22 @@ angular.module('starter.controllers', [])
 			
 
 			$scope.data = result.list
-
+			for(var i=0;i<$scope.data.length;i++){
+				if($scope.data[i].avaitar==""){
+					$scope.data[i].avaitar="img/img1.png"
+				}
+			}
+			
+            $("img").one("error", function(e) {
+						$(this).attr("src", "img/img1.png");
+						$(this).css({
+							"width": "100%",
+							"height": "100%"
+						})
+					})
+    
 		})
-    
-    
+     
     
 	})
 
@@ -283,6 +309,9 @@ angular.module('starter.controllers', [])
 			
 
 		})
+		$scope.govideo=function(id){
+	window.location="#/tab/video/"+id
+}
 
 	})
 	.controller("SeenCtrl", function($scope, $rootScope, $http) {
@@ -333,7 +362,87 @@ angular.module('starter.controllers', [])
 		})
 
 	})
-	.controller("VideoCtrl",function($scope){
+	.controller("VideoCtrl",function($scope,$ionicPopup,$http,$rootScope,$stateParams){
+		$rootScope.range=1;
+		$scope.id=$stateParams.id
+		console.log($scope.id)
+		$scope.myPopup = function() {
+				
+				document.getElementById("media").pause();
+				$ionicPopup.show({
+					cssClass: "team-popup",
+					template: '<div class="btn_title">下载学果果APP看视频</div>',
+
+					subTitle: '',
+					scope: $scope,
+					buttons: [{
+							text: '<div class="myPopup cancel_color">取消</div>',
+							type: "",
+						},
+						{
+							text: '<div class="myPopup confirm_color">确定</div>',
+							type: '',
+							onTap: function(e) {
+                                 window.location.href="http://www.xueguoguo.cn/jump.html"
+							}
+						},
+					]
+				});
+			}
+			$http({
+				method: "GET",
+				url: "http://139.199.203.171:9000/wxapi/Course?rang="+ $rootScope.range ,
+				data: {
+
+				}
+			}).success(function(data) {
+				console.log(data)
+				for(var i = 0; i < data.list.length; i++) {
+					if(data.list[i].id == $scope.id) {
+						$scope.video_data = data.list[i]
+					}
+				}
+				console.log($scope.video_data)
+				$scope.url = $scope.video_data.url
+				
+				var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
+				$('.zy_media').append(video_str)
+				
+				
+				document.body.style.overflow = 'hidden';
+				zymedia('video', {
+
+				});
+				if(!localStorage.getItem(["time"+$scope.id])){
+					 $scope.video={
+				 	video_time:0,
+				 	video_id:$scope.id
+				 }
+					
+				 localStorage.setItem(["time"+$scope.id],JSON.stringify($scope.video))
+				}
+				var timeJson=localStorage.getItem(["time"+$scope.id])
+				console.log(timeJson)
+               document.getElementById("media").currentTime=JSON.parse(timeJson).video_time
+				
+				
+				
+				
+				
+                   
+			})
+			window.onbeforeunload  =function(){
+				alert(1)
+				 var time=document.getElementById("media").currentTime;
+				 $scope.video={
+				 	video_time:time,
+				 	video_id:$scope.id
+				 }
+				 
+				 
+            	   localStorage.setItem(["time"+$scope.id],JSON.stringify($scope.video));   
+			}
+			
 		
 	})
 	

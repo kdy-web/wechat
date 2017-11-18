@@ -163,15 +163,15 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
     }
   })
   	.state('tab.video', {
-    url: '/video',
+    url: '/video/:id',
     views: {
-      'tab-seen': {
+      'tab-class': {
         templateUrl: 'templates/tab-video.html',
         controller: 'VideoCtrl'
       }
     }
   })
- 
+
   	
  
   

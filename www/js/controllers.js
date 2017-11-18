@@ -172,7 +172,7 @@ angular.module('starter.controllers', [])
 					})
 		$http({
 			method: "GET",
-			url: "http://www.xueguoguo.cn:9000/wxapi/Course?"+"rang="+ $rootScope.range ,
+			url: "http://www.xueguoguo.cn/wxapi/Course?"+"rang="+ $rootScope.range ,
 			data: {
 
 			}

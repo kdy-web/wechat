@@ -170,7 +170,7 @@ angular.module('starter.controllers', [])
 
 			}
        }).done(function(result) {
-       	console.log(JSON.parse(result))
+       	console.log(result)
        	result=JSON.parse(result)
 			
          for(var i=0;i<result.list.length;i++){

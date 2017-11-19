@@ -166,7 +166,7 @@ angular.module('starter.controllers', [])
        $rootScope.range = 1
 		$http({
 			method: "GET",
-			url: "http://139.199.203.171:9000/wxapi/Course?"+"rang"+ $rootScope.range ,
+			url: "https://www.xueguoguo.cn/wxapi/Course?"+"rang"+ $rootScope.range ,
 			data: {
 
 			}

@@ -395,6 +395,8 @@ $scope.golist=function(){
   
   }); 
   window.onhashchange=function(){
+  	console.log(1)
+  	$scope.modal_third.hide()
   	window.location.reload()
   }
   

@@ -157,7 +157,7 @@
 		</ul>
 	</div>
 	<div class="search_box" id="search" style="display: none;">
-		<input type="text" style="border: 1px solid #CDCDCD;border-radius:1rem;width: 5.9rem;height: 0.54rem;margin-left:0.3rem ;text-indent: 0.9rem;" />
+		<input type="text" id="search_text" ng-blur="golist()" style="border: 1px solid #CDCDCD;border-radius:1rem;width: 5.9rem;height: 0.54rem;margin-left:0.3rem ;text-indent: 0.9rem;" />
 		<div style="font-size: 0.28rem;color: #8E8E8E;margin-left: 0.36rem;position: relative;top: 0.08rem;" id="cancel">取消</div>
 		<img src="img/视频列表(收费).png" />
 	</div>
@@ -171,7 +171,7 @@
 				<div class="box yellow"><img src="img/timg.jpg" /></div>
 			</ion-slide>
 			<ion-slide on-slide-changed="slideHasChanged(index)">
-				<div class="box pink"><img src="img/timg (1).jpg" /></div>
+				<div class="box pink"><img src="img/timg3.jpg" /></div>
 			</ion-slide>
 		</ion-slide-box>
 		<div id="scroll_box">

@@ -92,6 +92,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
     .state('tab', {
     url: '/tab',
     abstract: true,
+    
     templateUrl: 'templates/tabs.html'
   })
 
@@ -126,33 +127,28 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
       }
     }
   })
-  .state('tab.tutorial', {
-    url: '/tutorial/:id',
+ 
+  .state('tab.list', {
+    url: '/list',
+
     views: {
       'tab-teacher': {
-        templateUrl: 'templates/tab-tutorial.html',
-        controller: 'TutorialCtrl'
+        templateUrl: 'templates/tab-list.html',
+        controller: 'ListCtrl'
       }
     }
   })
-  .state('tab.seen', {
-    url: '/seen',
+  .state('tab.mine_list', {
+    url: '/mine_list',
+
     views: {
       'tab-mine': {
-        templateUrl: 'templates/tab-seen.html',
-        controller: 'SeenCtrl'
+        templateUrl: 'templates/mine_list.html',
+        controller: 'Mine_listCtrl'
       }
     }
   })
-  .state('tab.collect', {
-    url: '/collect',
-    views: {
-      'tab-mine': {
-        templateUrl: 'templates/tab-collect.html',
-        controller: 'CollectCtrl'
-      }
-    }
-  })
+ 
     .state('tab.bills', {
     url: '/bills',
     views: {
@@ -164,6 +160,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
   })
   	.state('tab.video', {
     url: '/video/:id',
+   
     views: {
       'tab-class': {
         templateUrl: 'templates/tab-video.html',
@@ -171,8 +168,26 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
       }
     }
   })
-
-  	
+.state('tab.teacher_video', {
+    url: '/teacher_video/:id',
+    
+    views: {
+      'tab-teacher': {
+        templateUrl: 'templates/tab-teacher_video.html',
+        controller: 'Teacher_videoCtrl'
+      }
+    }
+  })
+  .state('tab.search', {
+    url: '/search/:val',
+    cache:true,
+    views: {
+      'tab-class': {
+        templateUrl: 'templates/tab-search.html',
+        controller: 'SearchCtrl'
+      }
+    }
+  })	
  
   
   

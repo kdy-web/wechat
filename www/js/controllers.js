@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
 	.controller('ClassCtrl', function($scope, $ionicSlideBoxDelegate,$http,$rootScope,$timeout,$ionicScrollDelegate) {
+		 
 		 var len;
 		$('.tab-item').eq(1).click(function(){
 			$('#swiper-container2').hide()
@@ -163,17 +164,9 @@ angular.module('starter.controllers', [])
 		$scope.history=[];
 		$scope.politics=[];
        $rootScope.range = 1
-       $("img").one("error", function(e) {
-						$(this).attr("src", "img/img1.png");
-						$(this).css({
-							"width": "100%",
-							"height": "100%"
-						})
-					})
-      $timeout(function(){
-      		$http({
+		$http({
 			method: "GET",
-			url: "https://www.xueguoguo.cn/wxapi/Course?range=1" ,
+			url: "http://139.199.203.171:9000/wxapi/Course?"+"rang"+ $rootScope.range ,
 			data: {
 
 			}
@@ -222,7 +215,8 @@ angular.module('starter.controllers', [])
         len = $scope.Chinese.length
 		$("#swiper-container3").css("height", len  * 2.88+ "rem")
 		})
-      })
+     
+     
 	
 $scope.govideo=function(id){
 	$('#swiper-container2').hide()
@@ -234,19 +228,26 @@ window.onhashchange=function(e){
 	}
 	
 }
+$scope.golist=function(){
+	if($('#search_text').val()){
+		window.location="#/tab/search/"+$('#search_text').val()
+	}
+	
+	
+}
 
 	})
 
 	.controller('TeacherCtrl', function($scope, $http, $rootScope) {
 		 
-		$scope.gotutorial = function(id) {
+		$scope.gotutorial = function(teacher_id) {
 
-			window.location = "#/tab/tutorial/"+id
+			window.location = "#/tab/list"+"?teacher_id="+teacher_id
 		}
           
     $http({
 			method: "GET",
-			url: "http://139.199.203.171:9000/wxapi/Search?funcid=teachers&everyPage=1000",
+			url: "https://www.xueguoguo.cn/wxapi/Search?funcid=teachers&everyPage=1000",
 			data: {
 
 			}
@@ -278,11 +279,11 @@ window.onhashchange=function(e){
 	.controller('MineCtrl', function($scope) {
 		$scope.goseen = function() {
 
-			window.location = "#/tab/seen"
+			window.location = "#/tab/mine_list"
 		}
 		$scope.gocollect = function() {
 
-			window.location = "#/tab/collect"
+			window.location = "#/tab/mine_list"
 		}
 		$scope.gobills = function() {
 
@@ -290,38 +291,36 @@ window.onhashchange=function(e){
 		}
 
 	})
-	.controller("TutorialCtrl", function($scope, $rootScope, $http,$stateParams) {
-		$scope.id=$stateParams.id;
-		console.log($scope.id)
-		$scope.data = [];
-		$rootScope.range = 1
-		$http({
+
+	.controller("ListCtrl", function($scope, $rootScope, $http) {
+		$rootScope.range ="rang=1"
+		var index=window.location.hash.indexOf("?")
+		var search=window.location.hash.substr(index)
+		
+		if(search.indexOf("teacher_id")!=-1){
+			$scope.id=getQueryString("teacher_id",search.substr(1))
+		
+		   $scope.data = [];
+			$http({
 			method: "GET",
-			url: "http://139.199.203.171:9000/wxapi/Course?" + $rootScope.range,
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range+"&subject=",
 			data: {
 
 			}
-
 		}).success(function(result) {
-			console.log(result)
-            for(var i=0;i<result.list.length;i++){
+			
+           for(var i=0;i<result.list.length;i++){
             	if(result.list[i].teacher_id==$scope.id){
             		$scope.data.push(result.list[i]);
             	}
             }
-			
+			console.log($scope.data)
 
 		})
-		$scope.govideo=function(id){
-	window.location="#/tab/video/"+id
-}
-
-	})
-	.controller("SeenCtrl", function($scope, $rootScope, $http) {
-		$rootScope.range = 1
-		$http({
+		}else{
+			$http({
 			method: "GET",
-			url: "http://139.199.203.171:9000/wxapi/Course?" + $rootScope.range,
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range+"&subject=",
 			data: {
 
 			}
@@ -331,13 +330,20 @@ window.onhashchange=function(e){
 			$scope.data = result.list
 
 		})
+		}
+		
+		$scope.govideo=function(id){
+			console.log
+	window.location="#/tab/teacher_video/"+id
+}
+		
 
 	})
 	.controller("BillsCtrl", function($scope, $rootScope, $http) {
-		$rootScope.range = 1
+		$rootScope.range = "rang=1"
 		$http({
 			method: "GET",
-			url: "http://139.199.203.171:9000/wxapi/Course?" + $rootScope.range,
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range+"&subject=",
 			data: {
 
 			}
@@ -349,11 +355,11 @@ window.onhashchange=function(e){
 		})
 
 	})
-	.controller("CollectCtrl", function($scope, $rootScope, $http) {
-		$rootScope.range = 1
+	.controller("Mine_listCtrl",function($scope,$http,$rootScope){
+		$rootScope.range="rang=1"
 		$http({
 			method: "GET",
-			url: "http://139.199.203.171:9000/wxapi/Course?" + $rootScope.range,
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range+"&subject=''",
 			data: {
 
 			}
@@ -363,8 +369,9 @@ window.onhashchange=function(e){
 			$scope.data = result.list
 
 		})
-
+		
 	})
+	
 	.controller("VideoCtrl",function($scope,$ionicPopup,$http,$rootScope,$stateParams,$ionicModal){
 		 $ionicModal.fromTemplateUrl('templates/modal.html', {
     scope: $scope,
@@ -387,10 +394,12 @@ window.onhashchange=function(e){
     $scope.modal_third = modal;
   
   }); 
+  window.onhashchange=function(){
+  	window.location.reload()
+  }
   
   
-  
-		$rootScope.range=1;
+		$rootScope.range="rang=1";
 		$scope.id=$stateParams.id
 		console.log($scope.id)
 		$scope.myPopup = function() {
@@ -418,7 +427,7 @@ window.onhashchange=function(e){
 			}
 			$http({
 				method: "GET",
-				url: "http://139.199.203.171:9000/wxapi/Course?rang="+ $rootScope.range ,
+				url: "https://www.xueguoguo.cn/wxapi/Course?"+ $rootScope.range+"&subject=" ,
 				data: {
 
 				}
@@ -474,6 +483,160 @@ window.onhashchange=function(e){
 			
 		
 	})
+	.controller("Teacher_videoCtrl",function($scope,$ionicPopup,$http,$rootScope,$stateParams,$ionicModal){
+		 $ionicModal.fromTemplateUrl('templates/modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+   
+  });
+ $ionicModal.fromTemplateUrl('templates/modal_second.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_second = modal;
+   
+  });
+      $ionicModal.fromTemplateUrl('templates/modal_third.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_third = modal;
+  
+  }); 
+  window.onhashchange=function(){
+  	window.location.reload()
+  }
+  
+  
+		$rootScope.range="rang=1";
+		$scope.id=$stateParams.id
+		console.log($scope.id)
+		$scope.myPopup = function() {
+				
+				document.getElementById("media").pause();
+				$ionicPopup.show({
+					cssClass: "team-popup",
+					template: '<div class="btn_title">下载学果果APP看视频</div>',
+
+					subTitle: '',
+					scope: $scope,
+					buttons: [{
+							text: '<div class="myPopup cancel_color">取消</div>',
+							type: "",
+						},
+						{
+							text: '<div class="myPopup confirm_color">确定</div>',
+							type: '',
+							onTap: function(e) {
+                                 window.location.href="http://www.xueguoguo.cn/jump.html"
+							}
+						},
+					]
+				});
+			}
+			$http({
+				method: "GET",
+				url: "https://www.xueguoguo.cn/wxapi/Course?"+ $rootScope.range+"&subject=" ,
+				data: {
+
+				}
+			}).success(function(data) {
+				console.log(data)
+				for(var i = 0; i < data.list.length; i++) {
+					if(data.list[i].id == $scope.id) {
+						$scope.video_data = data.list[i]
+					}
+				}
+				console.log($scope.video_data)
+				$scope.url = $scope.video_data.url
+				
+				var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
+				$('.zy_media').append(video_str)
+				if($scope.video_data.price=="0"){
+					$("#content_top").hide()
+				}
+				
+				document.body.style.overflow = 'hidden';
+				zymedia('video', {
+
+				});
+				if(!localStorage.getItem(["time"+$scope.id])){
+					 $scope.video={
+				 	video_time:0,
+				 	video_id:$scope.id
+				 }
+					
+				 localStorage.setItem(["time"+$scope.id],JSON.stringify($scope.video))
+				}
+				var timeJson=localStorage.getItem(["time"+$scope.id])
+				console.log(timeJson)
+               document.getElementById("media").currentTime=JSON.parse(timeJson).video_time
+				
+				
+				
+				
+				
+                   
+			})
+			window.onbeforeunload  =function(){
+				alert(1)
+				 var time=document.getElementById("media").currentTime;
+				 $scope.video={
+				 	video_time:time,
+				 	video_id:$scope.id
+				 }
+				 
+				 
+            	   localStorage.setItem(["time"+$scope.id],JSON.stringify($scope.video));   
+			}
+			
+		
+	})
+	.controller("SearchCtrl",function($scope,$stateParams,$http,$rootScope){
+		$scope.val=$stateParams.val;
+		console.log($scope.val)
+		$scope.arr=[];
+		
+			$http({
+				method: "GET",
+				url: "https://www.xueguoguo.cn/wxapi/Course?"+ $rootScope.range+"&subject=''",
+				data: {
+
+				}
+			}).success(function(result){
+				console.log(result)
+				for(var i=0;i<result.list.length;i++){
+					if(result.list[i].brief.indexOf($scope.val)!=-1){
+						$scope.arr.push(result.list[i])
+					}
+					if(result.list[i].grade.indexOf($scope.val)!=-1){
+						$scope.arr.push(result.list[i])
+					}
+						if(result.list[i].subject.indexOf($scope.val)!=-1){
+						$scope.arr.push(result.list[i])
+					}
+						if(result.list[i].tbrief.indexOf($scope.val)!=-1){
+						$scope.arr.push(result.list[i])
+					}
+				   if(result.list[i].title.indexOf($scope.val)!=-1){
+						$scope.arr.push(result.list[i])
+					}
+				}
+				$scope.data=$scope.arr.unique1()
+				
+			})
+		
+		$scope.govideo=function(id){
+			window.location="#/tab/video/"+id
+		}
+		
+		
+		
+		
+	})
+	
 	
 
 	.directive('hideTabs', function($rootScope) {

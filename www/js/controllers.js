@@ -449,14 +449,21 @@ console.log('$destroy');
 				
 				var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
 				$('.zy_media').append(video_str)
-				if($scope.video_data.price=="0"){
-					$("#content_top").hide()
-				}
+				
 				
 				document.body.style.overflow = 'hidden';
 				zymedia('video', {
 
 				});
+				if($scope.video_data.price=="0"){
+					$("#content_top").hide()
+					
+				}else{
+						$('.zy_play').on("click",function(){
+       		console.log(1)
+       		$scope.myPopup()
+               	})
+				}
 				if(!localStorage.getItem(["time"+$scope.id])){
 					 $scope.video={
 				 	video_time:0,
@@ -560,14 +567,21 @@ console.log('$destroy');
 				
 				var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
 				$('.zy_media').append(video_str)
-				if($scope.video_data.price=="0"){
-					$("#content_top").hide()
-				}
+			
 				
 				document.body.style.overflow = 'hidden';
 				zymedia('video', {
 
 				});
+					if($scope.video_data.price=="0"){
+					$("#content_top").hide()
+					
+				}else{
+						$('.zy_play').on("click",function(){
+       		console.log(1)
+       		$scope.myPopup()
+               	})
+				}
 				if(!localStorage.getItem(["time"+$scope.id])){
 					 $scope.video={
 				 	video_time:0,
@@ -668,6 +682,9 @@ console.log('$destroy');
  	window.location.reload()
  }
   
+  
+  
+  
 		$rootScope.range="rang=1";
 		$scope.id=$stateParams.id
 		console.log($scope.id)
@@ -712,14 +729,21 @@ console.log('$destroy');
 				
 				var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
 				$('.zy_media').append(video_str)
-				if($scope.video_data.price=="0"){
-					$("#content_top").hide()
-				}
+				
 				
 				document.body.style.overflow = 'hidden';
 				zymedia('video', {
 
 				});
+				if($scope.video_data.price=="0"){
+					$("#content_top").hide()
+					
+				}else{
+						$('.zy_play').on("click",function(){
+       		console.log(1)
+       		$scope.myPopup()
+               	})
+				}
 				if(!localStorage.getItem(["time"+$scope.id])){
 					 $scope.video={
 				 	video_time:0,

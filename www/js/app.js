@@ -188,6 +188,16 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
       }
     }
   })	
+   .state('tab.mine_video', {
+    url: '/mine_video/:id',
+    cache:true,
+    views: {
+      'tab-mine': {
+        templateUrl: 'templates/tab-mine_video.html',
+        controller: 'Mine_videoCtrl'
+      }
+    }
+  })	
  
   
   

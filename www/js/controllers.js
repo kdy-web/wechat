@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 	.controller('ClassCtrl', function($scope, $ionicSlideBoxDelegate,$http,$rootScope,$timeout,$ionicScrollDelegate) {
-		 
+	
 		 var len;
 		$('.tab-item').eq(1).click(function(){
 			$('#swiper-container2').hide()
@@ -369,7 +369,9 @@ $scope.golist=function(){
 			$scope.data = result.list
 
 		})
-		
+		$scope.govideo=function(id){
+			window.location="#/tab/mine_video/"+id
+		}
 	})
 	
 	.controller("VideoCtrl",function($scope,$ionicPopup,$http,$rootScope,$stateParams,$ionicModal){
@@ -394,11 +396,13 @@ $scope.golist=function(){
     $scope.modal_third = modal;
   
   }); 
-  window.onhashchange=function(){
-  	console.log(1)
-  	$scope.modal_third.hide()
-  	window.location.reload()
-  }
+  $scope.$on('$destroy',function(){            
+console.log('$destroy');           
+ $scope.modal_third.hide()
+  
+
+})   
+ 
   
   
 		$rootScope.range="rang=1";
@@ -472,7 +476,7 @@ $scope.golist=function(){
                    
 			})
 			window.onbeforeunload  =function(){
-				alert(1)
+				 $scope.modal_third.hide()
 				 var time=document.getElementById("media").currentTime;
 				 $scope.video={
 				 	video_time:time,
@@ -507,9 +511,9 @@ $scope.golist=function(){
     $scope.modal_third = modal;
   
   }); 
-  window.onhashchange=function(){
-  	window.location.reload()
-  }
+ window.onhashchange=function(){
+ 	window.location.reload()
+ }
   
   
 		$rootScope.range="rang=1";
@@ -637,6 +641,114 @@ $scope.golist=function(){
 		
 		
 		
+	}).controller("Mine_videoCtrl",function($scope,$ionicPopup,$http,$rootScope,$stateParams,$ionicModal){
+		 $ionicModal.fromTemplateUrl('templates/modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+   
+  });
+ $ionicModal.fromTemplateUrl('templates/modal_second.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_second = modal;
+   
+  });
+      $ionicModal.fromTemplateUrl('templates/modal_third.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_third = modal;
+  
+  }); 
+ 
+   window.onhashchange=function(){
+ 	window.location.reload()
+ }
+  
+		$rootScope.range="rang=1";
+		$scope.id=$stateParams.id
+		console.log($scope.id)
+		$scope.myPopup = function() {
+				
+				document.getElementById("media").pause();
+				$ionicPopup.show({
+					cssClass: "team-popup",
+					template: '<div class="btn_title">下载学果果APP看视频</div>',
+
+					subTitle: '',
+					scope: $scope,
+					buttons: [{
+							text: '<div class="myPopup cancel_color">取消</div>',
+							type: "",
+						},
+						{
+							text: '<div class="myPopup confirm_color">确定</div>',
+							type: '',
+							onTap: function(e) {
+                                 window.location.href="http://www.xueguoguo.cn/jump.html"
+							}
+						},
+					]
+				});
+			}
+			$http({
+				method: "GET",
+				url: "https://www.xueguoguo.cn/wxapi/Course?"+ $rootScope.range+"&subject=" ,
+				data: {
+
+				}
+			}).success(function(data) {
+				console.log(data)
+				for(var i = 0; i < data.list.length; i++) {
+					if(data.list[i].id == $scope.id) {
+						$scope.video_data = data.list[i]
+					}
+				}
+				console.log($scope.video_data)
+				$scope.url = $scope.video_data.url
+				
+				var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
+				$('.zy_media').append(video_str)
+				if($scope.video_data.price=="0"){
+					$("#content_top").hide()
+				}
+				
+				document.body.style.overflow = 'hidden';
+				zymedia('video', {
+
+				});
+				if(!localStorage.getItem(["time"+$scope.id])){
+					 $scope.video={
+				 	video_time:0,
+				 	video_id:$scope.id
+				 }
+					
+				 localStorage.setItem(["time"+$scope.id],JSON.stringify($scope.video))
+				}
+				var timeJson=localStorage.getItem(["time"+$scope.id])
+				console.log(timeJson)
+               document.getElementById("media").currentTime=JSON.parse(timeJson).video_time
+				
+				
+				
+				
+				
+                   
+			})
+			window.onbeforeunload  =function(){
+			
+				 var time=document.getElementById("media").currentTime;
+				 $scope.video={
+				 	video_time:time,
+				 	video_id:$scope.id
+				 }
+				 
+				 
+            	   localStorage.setItem(["time"+$scope.id],JSON.stringify($scope.video));   
+			}
 	})
 	
 	

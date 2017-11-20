@@ -100,6 +100,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
 
   .state('tab.class', {
     url: '/class',
+       cache:false,
     views: {
       'tab-class': {
         templateUrl: 'templates/tab-class.html',
@@ -110,6 +111,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
 
   .state('tab.teacher', {
       url: '/teacher',
+         cache:false,
       views: {
         'tab-teacher': {
           templateUrl: 'templates/tab-teacher.html',
@@ -120,6 +122,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
 
   .state('tab.mine', {
     url: '/mine',
+       cache:false,
     views: {
       'tab-mine': {
         templateUrl: 'templates/tab-mine.html',

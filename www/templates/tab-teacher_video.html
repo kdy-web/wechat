@@ -260,7 +260,7 @@
 			}
 			
 			.zy_media {
-				z-index: 999999999
+				z-index: 999
 			}
 			.video_title{
 				margin-top: 0.3rem;
@@ -296,10 +296,39 @@ font-weight: bold;
             /*vertical-align:middle;*/
             /*position: relative;*/
         }
+        .video_banner{
+        	position: absolute;
+        	top: 0;
+        	left: 0;
+        	width: 100%;
+        	height:100% ;
+        	z-index: 9999;
+        }
+        .play_btn{
+        	width: 2rem;
+        	height: 2rem;
+        	background: rgba(255,255,255,0.30);
+        	border-radius:50% ;
+        	position: absolute;
+        	left: 2.75rem;
+        	top: 1.02rem;
+        	z-index: 99999;
+        }
+      
 		</style>
+	
 		<div class="playvideo">
 			<div class="zy_media">
   
+			</div>
+				<div class="video_banner">
+				<img src="img/video_banner.jpg" style="width: 100%;height: 100%;"/>
+				<div style="width: 100%;height: 100%;position: absolute;top: 0;left: 0;background:rgba(0,0,0,0.30) ;">
+				<div class="play_btn">
+					<img src="img/Triangle.png" style="width: 0.74rem;height: 0.89rem;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;"/>
+					
+				</div>
+				</div>
 			</div>
 
 		</div>
@@ -328,7 +357,7 @@ font-weight: bold;
 				</div>
 				<div class="title_content_content">
 					<li style="font-size: 0.4rem;color: #232427;margin-bottom: 0.24rem;margin-top: 0.1rem;">{{video_data.teacher}}</li>
-					<li style="font-size: 0.28rem;color: #8E8E8E;">特级语文教师</li>
+					<li style="font-size: 0.28rem;color: #8E8E8E;">特级{{video_data.subject}}教师</li>
 				</div>
 
 			</div>

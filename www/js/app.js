@@ -133,7 +133,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
  
   .state('tab.list', {
     url: '/list',
-
+  cache:false,
     views: {
       'tab-teacher': {
         templateUrl: 'templates/tab-list.html',
@@ -143,7 +143,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
   })
   .state('tab.mine_list', {
     url: '/mine_list',
-
+  cache:false,
     views: {
       'tab-mine': {
         templateUrl: 'templates/mine_list.html',
@@ -154,6 +154,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
  
     .state('tab.bills', {
     url: '/bills',
+      cache:false,
     views: {
       'tab-mine': {
         templateUrl: 'templates/tab-bills.html',
@@ -163,7 +164,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
   })
   	.state('tab.video', {
     url: '/video/:id',
-   
+     cache:false,
     views: {
       'tab-class': {
         templateUrl: 'templates/tab-video.html',
@@ -173,7 +174,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
   })
 .state('tab.teacher_video', {
     url: '/teacher_video/:id',
-    
+      cache:false,
     views: {
       'tab-teacher': {
         templateUrl: 'templates/tab-teacher_video.html',
@@ -193,7 +194,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
   })	
    .state('tab.mine_video', {
     url: '/mine_video/:id',
-    cache:true,
+    cache:false,
     views: {
       'tab-mine': {
         templateUrl: 'templates/tab-mine_video.html',

@@ -1,7 +1,11 @@
 angular.module('starter.controllers', [])
 
 	.controller('ClassCtrl', function($scope, $ionicSlideBoxDelegate,$http,$rootScope,$timeout,$ionicScrollDelegate) {
-	
+	var needRefresh = sessionStorage.getItem("need-refresh");
+    if(needRefresh){
+        sessionStorage.removeItem("need-refresh");
+        location.reload();
+    }
 		 var len;
 		$('.tab-item').eq(1).click(function(){
 			$('#swiper-container2').hide()
@@ -166,7 +170,7 @@ angular.module('starter.controllers', [])
        $rootScope.range = 1
 		$http({
 			method: "GET",
-			url: "https://www.xueguoguo.cn/wxapi/Course?"+"rang"+ $rootScope.range ,
+			url: "https://www.xueguoguo.cn/wxapi/Course?"+"range="+ $rootScope.range ,
 			data: {
 
 			}
@@ -375,6 +379,8 @@ $scope.golist=function(){
 	})
 	
 	.controller("VideoCtrl",function($scope,$ionicPopup,$http,$rootScope,$stateParams,$ionicModal){
+		
+		sessionStorage.setItem("need-refresh", true);
 		 $ionicModal.fromTemplateUrl('templates/modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -420,6 +426,9 @@ console.log('$destroy');
 					buttons: [{
 							text: '<div class="myPopup cancel_color">取消</div>',
 							type: "",
+							onTap: function(e) {
+                            
+							}
 						},
 						{
 							text: '<div class="myPopup confirm_color">确定</div>',
@@ -459,7 +468,8 @@ console.log('$destroy');
 					$("#content_top").hide()
 					
 				}else{
-						$('.zy_play').on("click",function(){
+					
+						$('.playvideo').on("click",function(){
        		console.log(1)
        		$scope.myPopup()
                	})
@@ -538,6 +548,9 @@ console.log('$destroy');
 					buttons: [{
 							text: '<div class="myPopup cancel_color">取消</div>',
 							type: "",
+							onTap: function(e) {
+                              
+							}
 						},
 						{
 							text: '<div class="myPopup confirm_color">确定</div>',
@@ -577,7 +590,8 @@ console.log('$destroy');
 					$("#content_top").hide()
 					
 				}else{
-						$('.zy_play').on("click",function(){
+				
+						$('.playvideo').on("click",function(){
        		console.log(1)
        		$scope.myPopup()
                	})
@@ -700,6 +714,9 @@ console.log('$destroy');
 					buttons: [{
 							text: '<div class="myPopup cancel_color">取消</div>',
 							type: "",
+							onTap: function(e) {
+                            
+							}
 						},
 						{
 							text: '<div class="myPopup confirm_color">确定</div>',
@@ -739,7 +756,8 @@ console.log('$destroy');
 					$("#content_top").hide()
 					
 				}else{
-						$('.zy_play').on("click",function(){
+				
+						$('.playvideo').on("click",function(){
        		console.log(1)
        		$scope.myPopup()
                	})

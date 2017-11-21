@@ -22,17 +22,17 @@ angular.module('starter.controllers', [])
 		//  })
 		//  
 		//  
-		//wx.config({
-		//		debug: false,
-		//		appId: 'wx520f5be3632ed6b7',
-		//		timestamp: now_time,
-		//		nonceStr: 'tnZJBsdrUo88MFiB',
-		//		signature: 'f94e850bf0f3fdf847dcc5f4a4c4de90',
-		//		jsApiList: [
-		//			'onMenuShareTimeline',
-		//			'onMenuShareAppMessage'
-		//		  ]
-		//	});
+		wx.config({
+				debug: false,
+				appId: 'wx520f5be3632ed6b7',
+				timestamp: now_time,
+				nonceStr: 'tnZJBsdrUo88MFiB',
+				signature: 'f94e850bf0f3fdf847dcc5f4a4c4de90',
+				jsApiList: [
+					'onMenuShareTimeline',
+					'onMenuShareAppMessage'
+				  ]
+			});
 		//	wx.ready(function () {
 		//		console.log(1)
 		//		var shareData = {

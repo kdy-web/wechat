@@ -4,15 +4,20 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <style type="text/css">
+	.active{
+			color:#232427;
+		}
 	.tab-item-active{
 				color:#2B94FA;
 			}
+		
 		.icon{
 				width: 0.54rem;
 		height: 0.44rem;
 		 position: relative;
 	   top: 0.1rem;
-		}	
+		}
+		
 	.ion-tab-class{
 	
 		background: url(img/mingshiketang2.png) no-repeat  0rem 0.2rem;
@@ -53,17 +58,17 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-left "   ng-class="{'tabs-item-hide': $root.hideTabs}">
 
   <!-- Dashboard Tab -->
-  <ion-tab title="课堂" icon-off="ion-tab-class" icon-on="ion-tab-class-highlight" href="#/tab/class">
+  <ion-tab title="课堂" icon-off="ion-tab-class" icon-on="ion-tab-class-highlight" href="#/tab/class" class="active">
     <ion-nav-view name="tab-class"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="老师" icon-off="ion-tab-teacher" icon-on="ion-tab-teacher-highlight" href="#/tab/teacher">
+  <ion-tab title="老师" icon-off="ion-tab-teacher" icon-on="ion-tab-teacher-highlight" href="#/tab/teacher" class="active">
     <ion-nav-view name="tab-teacher"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab title="我的" icon-off="ion-tab-mine" icon-on="ion-tab-mine-highlight" href="#/tab/mine">
+  <ion-tab title="我的" icon-off="ion-tab-mine" icon-on="ion-tab-mine-highlight" href="#/tab/mine" class="active">
     <ion-nav-view name="tab-mine"></ion-nav-view>
   </ion-tab>
 

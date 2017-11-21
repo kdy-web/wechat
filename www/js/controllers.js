@@ -298,13 +298,23 @@ angular.module('starter.controllers', [])
 		var grade_flag = true;
 		$('.grade_btn').click(function() {
 			if(grade_flag) {
-				$('.grade_box').show();
+				$('.grade_box').animate({"height":"2.1rem"},200);
 				grade_flag = false;
 			} else {
-				$('.grade_box').hide();
+				$('.grade_box').animate({"height":"0rem"},200);
 				grade_flag = true;
 			}
 		})
+		$('.grade_box li').click(function(e){
+		window.event? window.event.returnValue = false : e.preventDefault();
+		var html=$(this).html()
+		$('.grade_btn span').html(html)
+		console.log(html)
+		
+		})
+		
+		
+		
 		$('.search_icon').click(function() {
 			$(this).parent().css("display", "none")
 			$("#search").css("display", "block")
@@ -344,6 +354,12 @@ angular.module('starter.controllers', [])
 				window.location = "#/tab/search/" + $('#search_text').val()
 			}
 
+		}
+		$scope.gochoice=function(){
+			window.location="#/tab/search/"+"go_choice"
+		}
+		$scope.gohot=function(){
+			window.location="#/tab/search/"+"go_hot"
 		}
 
 	})
@@ -715,10 +731,46 @@ angular.module('starter.controllers', [])
 	.controller("SearchCtrl", function($scope, $stateParams, $http, $rootScope) {
 		sessionStorage.setItem("need-refresh", true);
 		$scope.val = $stateParams.val;
-		console.log($scope.val)
-		$scope.arr = [];
+			$scope.arr = [];
+			console.log($scope.val)
+		if($scope.val=="go_hot"){
+			$http({
+			method: "GET",
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
+			data: {
 
-		$http({
+			}
+		}).success(function(result) {
+			console.log(result)
+			for(var i = 0; i < result.list.length; i++) {
+			if(result.list[i].ishot==1){
+					$scope.arr.push(result.list[i])
+				}
+			}
+			$scope.data = $scope.arr.unique1()
+
+		})
+		}else if($scope.val=="go_choice"){
+				$http({
+			method: "GET",
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
+			data: {
+
+			}
+		}).success(function(result) {
+			console.log(result)
+			for(var i = 0; i < result.list.length; i++) {
+				if(result.list[i].isroll==1){
+					$scope.arr.push(result.list[i])
+				}
+			}
+			$scope.data = $scope.arr.unique1()
+
+		})
+		}
+		
+		else{
+				$http({
 			method: "GET",
 			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
 			data: {
@@ -743,9 +795,23 @@ angular.module('starter.controllers', [])
 					$scope.arr.push(result.list[i])
 				}
 			}
-			$scope.data = $scope.arr.unique1()
-
+			if($scope.arr.length==0){
+				console.log(1);
+				var str='<p style="font-size:0.3rem;margin:0.1rem">无数据</p>'
+				$("ion-content").append(str)
+			}else{
+				$scope.data = $scope.arr.unique1();
+			}
+			
+			
+			console.log($scope.arr)
+            
 		})
+		}
+		
+	
+
+		
 
 		$scope.govideo = function(id) {
 			window.location = "#/tab/video/" + id

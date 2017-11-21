@@ -21,7 +21,7 @@
 			font-size: 0.3rem;
 			border-bottom: 1px solid #F0F0F0;
 			background: #FFFFFF;
-			
+			color: #8E8E8E;
 		}
 		
 		#swiper-container3 {
@@ -109,7 +109,9 @@
 			height: 100%;
 		}
 		
-		.search_box ul {}
+		.search_box ul img{
+			
+		}
 		
 		.search_box ul li {
 			width: 2.27rem;
@@ -123,13 +125,18 @@
 		
 		.grade_box {
 			position: absolute;
-			top: 0.5rem;
+			top: 0.61rem;
 			background: #FFFFFF;
 			z-index: 999999;
-			display: none;
+		    height: 0rem;
+		    overflow: hidden;
+				border-left: 1px solid #F0F0F0;
+				
 		}
 		
-		.grade_box li {
+	.search_box	.grade_box li {
+		  height: 0.7rem;
+		  line-height: 0.7rem;
 			border-bottom: 1px solid #F0F0F0;
 		}
 		
@@ -150,12 +157,12 @@
 			<img src="img/search.png" />
 		</div>
 		<ul>
-			<li style="border-right: 1px solid #F0F0F0;color: #2B94FA;">精选</li>
-			<li style="border-right: 1px solid #F0F0F0;">最热</li>
-			<li style="position: relative;" class="grade_btn"><span style="margin-left: 0.8rem;margin-right: 0.2rem;">年级</span>
-				<img src="img/Group 8 Copy.png" style="transform: rotate(90deg);width: 0.10rem;height: 0.17rem;position: relative;top: 0.13rem;" />
+			<li style="border-right: 1px solid #F0F0F0;color: #FA912B;"  ng-click="gochoice()"><img src="img/6.png" style="width: 0.34rem;height: 0.34rem;position: relative;left: 0.5rem;top: 0.01rem;"/>精选</li>
+			<li style="border-right: 1px solid #F0F0F0;color: #FF3B30;" ng-click="gohot()"><img src="img/4.png" style="width: 0.34rem;height: 0.34rem;position: relative;left: 0.53rem;top: 0.01rem;"/>最热</li>
+			<li style="position: relative;" class="grade_btn"><img src="img/2.png" style="width: 0.34rem;height: 0.34rem;position: relative;top: 0.03rem;left: 0.5rem;"/><span style="margin-left: 0.6rem;margin-right: 0.2rem;color:#2B94FA;">年级</span>
+				<img src="img/down.png" style="width: 0.18rem;height: 0.18rem;position: relative;top: 0.11rem;right: 0.05rem;" />
 				<ul class="grade_box">
-					<li>高一</li>
+					<li style="	border-top: 1px solid #F0F0F0;">高一</li>
 					<li>高二</li>
 					<li>高三</li>
 				</ul>

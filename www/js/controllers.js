@@ -7,7 +7,31 @@ angular.module('starter.controllers', [])
         location.reload();
         
     }
-  
+  wx.config({
+		debug: true,
+		appId: 'wxfb95e4025a5d4614',
+		timestamp: '1498633007',
+		nonceStr: 'tnZJBsdrUo88MFiB',
+		signature: 'cae67a0a883822e1087cba091321b14b73152210',
+		jsApiList: [
+			'onMenuShareTimeline',
+			'onMenuShareAppMessage'
+		  ]
+	});
+	wx.ready(function () {
+		console.log(1)
+		var shareData = {
+			title: '马富天博客_PHP博客_PHP Blog_PHP编程_分享PHP开发经验',	//	标题
+			desc: '马富天博客是个人独立博客专为学习php打造php教程技术,在马富天博客里可以找到你所需要的所有关于php技术解决文章方案,打造一个以技术经验为主题的分享平台!QQ:335134463',	//	描述
+			link: 'http://www.mafutian.net/',	//	分享的URL，必须和当前打开的网页的URL是一样的
+			imgUrl: 'http://www.mafutian.net/logo.jpg'	//	缩略图地址
+		};
+		wx.onMenuShareAppMessage(shareData);
+		wx.onMenuShareTimeline(shareData);
+	});
+	wx.error(function (res) {
+	  //alert(res.errMsg);//错误提示
+	});
     	var mySwiper2 = new Swiper('#swiper-container2', {
     		  observer:true,//修改swiper自己或子元素时，自动初始化swiper
 	    observeParents:true,//修改swiper的父元素时，自动初始化swiper
@@ -118,7 +142,6 @@ angular.module('starter.controllers', [])
 			//设置当前mySwiper3的激活下标
 			var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
 
-			console.log(activeNav)
 			//假如当前有激活样式的元素没有可见
 			if(!activeNav.hasClass('swiper-slide-visible')) {
 
@@ -186,7 +209,7 @@ angular.module('starter.controllers', [])
 
 			}
 		}).success(function(result) {
-			console.log(result)
+			
          for(var i=0;i<result.list.length;i++){
 				if(result.list[i].subject=="语文"){
 					$scope.Chinese.push(result.list[i])
@@ -226,7 +249,7 @@ angular.module('starter.controllers', [])
           $scope.geograply=sort_arr($scope.geograply);
            $scope.history=sort_arr($scope.history);
             $scope.politics=sort_arr($scope.politics);
-			console.log($scope.Chinese)
+			
         len = $scope.Chinese.length
 		$("#swiper-container3").css("height", len  * 2.88+ "rem")
 		})
@@ -268,7 +291,7 @@ $scope.golist=function(){
 			}
 
 		}).success(function(result) {
-			console.log(result)
+			
 			
 
 			$scope.data = result.list

@@ -720,7 +720,7 @@ angular.module('starter.controllers', [])
 
 		$http({
 			method: "GET",
-			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=''",
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
 			data: {
 
 			}

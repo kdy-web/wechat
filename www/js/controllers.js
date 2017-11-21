@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
 		//		wx.onMenuShareTimeline(shareData);
 		//	});
 		//	wx.error(function (res) {
-		//	  alert(res.errMsg);//错误提示
+		//	 
 		//	});
 
 		var mySwiper2 = new Swiper('#swiper-container2', {

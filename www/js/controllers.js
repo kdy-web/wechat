@@ -5,7 +5,25 @@ angular.module('starter.controllers', [])
     if(needRefresh){
         sessionStorage.removeItem("need-refresh");
         location.reload();
+        
     }
+  
+    	var mySwiper2 = new Swiper('#swiper-container2', {
+    		  observer:true,//修改swiper自己或子元素时，自动初始化swiper
+	    observeParents:true,//修改swiper的父元素时，自动初始化swiper
+			watchSlidesProgress: true,
+			watchSlidesVisibility: true,
+			slidesPerView: 5, //可见的数量
+			//点击事件
+			onTap: function() {
+				
+				//把mySwiper3跳转到对应点击下标
+				mySwiper3.slideTo(mySwiper2.clickedIndex)
+			}
+		})
+ 
+    
+    
 		 var len;
 		$('.tab-item').eq(1).click(function(){
 			$('#swiper-container2').hide()
@@ -17,18 +35,30 @@ angular.module('starter.controllers', [])
 			$('#swiper-container2').show()
 		})
 		
-		
+		var flag=true;
 		$('#scroll').scroll(function(){
 			
 			if($ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top>190){
 				
-				
-			    
-			   $('#swiper-container2').appendTo("body")
+				if(flag){
+					var str=$('#swiper-container2')
+					$('#swiper-container2').remove()
+					$(str).appendTo("ion-view")
 				$('#swiper-container2').css({"position":"absolute","top":"0.88rem","left":"0","z-index":"3"})
+				flag=false
+				}
+			    
+			   
 			}else{
-				$("#swiper-container3").before($('#swiper-container2'))
+				if(flag==false){
+					console.log(1)
+					var str=$('#swiper-container2');
+					$('#swiper-container2').remove()
+					$("#swiper-container3").before(str)
 				$('#swiper-container2').css({"position":"relative","top":"0"})
+				flag=true
+				}
+				
 			}
 			
 			
@@ -38,33 +68,14 @@ angular.module('starter.controllers', [])
 		
 		
 		
-			var mySwiper2 = new Swiper('#swiper-container2', {
-			watchSlidesProgress: true,
-			watchSlidesVisibility: true,
-			slidesPerView: 5, //可见的数量
-			//点击事件
-			onTap: function() {
-				
-				//把mySwiper3跳转到对应点击下标
-				mySwiper3.slideTo(mySwiper2.clickedIndex)
-			}
-		})
-				var mySwiper4 = new Swiper('#swiper-container4', {
-			watchSlidesProgress: true,
-			watchSlidesVisibility: true,
-			slidesPerView: 5, //可见的数量
-			//点击事件
-			onTap: function() {
-				
-				//把mySwiper3跳转到对应点击下标
-				mySwiper3.slideTo(mySwiper4.clickedIndex)
-			}
-		})
+			
+			
 			
 			
 		//
 		
 		var mySwiper3 = new Swiper('#swiper-container3', {
+			
 			autoHeight: true,
 			  observer:true,//修改swiper自己或子元素时，自动初始化swiper
 	    observeParents:true,//修改swiper的父元素时，自动初始化swiper
@@ -629,6 +640,7 @@ console.log('$destroy');
 		
 	})
 	.controller("SearchCtrl",function($scope,$stateParams,$http,$rootScope){
+		sessionStorage.setItem("need-refresh", true);
 		$scope.val=$stateParams.val;
 		console.log($scope.val)
 		$scope.arr=[];

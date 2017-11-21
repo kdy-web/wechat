@@ -1,4 +1,60 @@
 <ion-view hide-nav-bar="true" cache-view="false">
+	<script type="text/javascript">
+    var imgUrl = 'http://www.baidu.com/images/share.jpg';  // 分享后展示的一张图片                 var lineLink = 'http://www.baidu.com'; // 点击分享后跳转的页面地址
+        var descContent = "这里相当于简介";  // 分享后的描述信息
+        var shareTitle = '这是要分享的标题';  // 分享后的标题
+        var appid = '';  // 应用id,如果有可以填，没有就留空
+        function shareFriend() {
+            WeixinJSBridge.invoke('sendAppMessage',{
+                "appid": appid,
+                "img_url": imgUrl,
+                "img_width": "200",
+                "img_height": "200",
+                "link": lineLink,
+                "desc": descContent,
+                "title": shareTitle
+            }, function(res) {
+                //_report('send_msg', res.err_msg);  // 这是回调函数，必须注释掉
+            })
+        }
+        function shareTimeline() {
+            WeixinJSBridge.invoke('shareTimeline',{
+                "img_url": imgUrl,
+                "img_width": "200",
+                "img_height": "200",
+                "link": lineLink,
+                "desc": descContent,
+                "title": shareTitle
+            }, function(res) {
+                   //_report('timeline', res.err_msg); // 这是回调函数，必须注释掉
+            });
+        }
+        function shareWeibo() {
+            WeixinJSBridge.invoke('shareWeibo',{
+                "content": descContent,
+                "url": lineLink,
+            }, function(res) {
+                //_report('weibo', res.err_msg);
+            });
+        }
+        // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+        document.addEventListener('WeixinJSBridgeReady', functiononBridgeReady() {
+            // 发送给好友
+            WeixinJSBridge.on('menu:share:appmessage', function(argv){
+                shareFriend();
+            });
+           // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function(argv){
+                shareTimeline();
+            });
+            // 分享到微博
+            WeixinJSBridge.on('menu:share:weibo', function(argv){
+                shareWeibo();
+            });
+        }, false);
+        </script>
+	
+	
 	<style type="text/css">
 		ion-slide div {
 			width: 100%;
@@ -23,11 +79,14 @@
 		
 		#swiper-container3 {
 			width: 100%;
-			height: auto;
+			
 			
 		}
-	
+	#swiper-container3 .swiper-wrapper{
+		height: 100%;
+	}
 		#swiper-container3 .swiper-wrapper  .swiper-slide{
+			width: 100%;
 			height: 10rem;
 			
 		}
@@ -83,12 +142,13 @@
 			padding-top: 0.22rem;
 			box-sizing: border-box;
 			border-bottom: 1px solid #F0F0F0;
-			position: fixed;
-			z-index: 3;
+			position: absolute;
+			z-index:9999;
 		}
 		
 		.search_box * {
 			float: left;
+
 		}
 		
 		.search_icon {
@@ -174,7 +234,7 @@
 				<div class="box pink"><img src="img/timg3.jpg" /></div>
 			</ion-slide>
 		</ion-slide-box>
-		<div id="scroll_box">
+		
 			<div class="swiper-container swiper-container-horizontal  " id="swiper-container2">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide active-nav" style="width: 1.5rem;">
@@ -198,7 +258,7 @@
 				</div>
 			</div>
 			<div class="swiper-container swiper-container-horizontal" id="swiper-container3">
-				<div class="swiper-wrapper">
+				<div class="swiper-wrapper" style="float:left; height:auto;">
 					<div class="swiper-slide ">
 						<div class="row" ng-repeat="Chinese_data  in   Chinese" >
 							<div class="col" style="padding-top:0.3rem ;padding-left: 0.2rem;box-sizing: border-box;" ng-repeat="Chinese in Chinese_data  "   ng-click="govideo(Chinese.id)">
@@ -330,7 +390,7 @@
 				</div>
 			</div>
 
-		</div>
+		
         
 	</ion-content>
 

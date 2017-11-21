@@ -7,10 +7,12 @@ angular.module('starter.controllers', [])
         location.reload();
         
     }
+    var now_time=new Date().getTime();
+    
   wx.config({
 		debug: true,
-		appId: 'wxfb95e4025a5d4614',
-		timestamp: '1498633007',
+		appId: 'wx520f5be3632ed6b7',
+		timestamp: now_time,
 		nonceStr: 'tnZJBsdrUo88MFiB',
 		signature: 'cae67a0a883822e1087cba091321b14b73152210',
 		jsApiList: [
@@ -30,7 +32,7 @@ angular.module('starter.controllers', [])
 		wx.onMenuShareTimeline(shareData);
 	});
 	wx.error(function (res) {
-	  //alert(res.errMsg);//错误提示
+	  alert(res.errMsg);//错误提示
 	});
     	var mySwiper2 = new Swiper('#swiper-container2', {
     		  observer:true,//修改swiper自己或子元素时，自动初始化swiper

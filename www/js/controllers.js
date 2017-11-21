@@ -290,7 +290,7 @@ angular.module('starter.controllers', [])
 					newarr.push(arr_content)
 				}
 			}
-
+             newarr.splice(4)
 			return newarr;
 
 		}
@@ -330,7 +330,7 @@ angular.module('starter.controllers', [])
 		})
 
 		$scope.govideo = function(id) {
-			$('#swiper-container2').hide()
+		
 			window.location = "#/tab/video/" + id
 		}
 		window.onhashchange = function(e) {
@@ -363,11 +363,15 @@ angular.module('starter.controllers', [])
 			}
 
 		}).success(function(result) {
-
+                console.log(result)
 			$scope.data = result.list
 			for(var i = 0; i < $scope.data.length; i++) {
 				if($scope.data[i].avaitar == "") {
 					$scope.data[i].avaitar = "img/img1.png"
+				}
+				if($scope.data[i].name=="朱庆"){
+					
+					$scope.data.splice(i,1)
 				}
 			}
 

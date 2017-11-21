@@ -14,7 +14,7 @@ angular.module('starter.controllers', [])
 		appId: 'wx520f5be3632ed6b7',
 		timestamp: now_time,
 		nonceStr: 'tnZJBsdrUo88MFiB',
-		signature: 'cae67a0a883822e1087cba091321b14b73152210',
+		signature: 'f94e850bf0f3fdf847dcc5f4a4c4de90',
 		jsApiList: [
 			'onMenuShareTimeline',
 			'onMenuShareAppMessage'

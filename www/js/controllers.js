@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
 		//  
 		//  
 		//wx.config({
-		//		debug: true,
+		//		debug: false,
 		//		appId: 'wx520f5be3632ed6b7',
 		//		timestamp: now_time,
 		//		nonceStr: 'tnZJBsdrUo88MFiB',

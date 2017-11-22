@@ -1,5 +1,9 @@
 angular.module('starter.controllers', [])
 
+
+
+
+
 	.controller('ClassCtrl', function($scope, $ionicSlideBoxDelegate, $http, $rootScope, $timeout, $ionicScrollDelegate) {
 		var needRefresh = sessionStorage.getItem("need-refresh");
 		if(needRefresh) {

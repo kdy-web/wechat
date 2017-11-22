@@ -100,7 +100,7 @@ $ionicConfigProvider.platform.ios.tabs.style('standard');
 
   .state('tab.class', {
     url: '/class',
-      
+      cache:true,
     views: {
       'tab-class': {
         templateUrl: 'templates/tab-class.html',

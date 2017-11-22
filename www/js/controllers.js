@@ -5,12 +5,7 @@ angular.module('starter.controllers', [])
 
 
 	.controller('ClassCtrl', function($scope, $ionicSlideBoxDelegate, $http, $rootScope, $timeout, $ionicScrollDelegate) {
-		var needRefresh = sessionStorage.getItem("need-refresh");
-		if(needRefresh) {
-			sessionStorage.removeItem("need-refresh");
-			location.reload();
-
-		}
+		
 var $body = $('body');
 			document.title = '在线课程';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
@@ -550,7 +545,7 @@ var $body = $('body');
 
 	.controller("VideoCtrl", function($scope, $ionicPopup, $http, $rootScope, $stateParams, $ionicModal) {
                
-		sessionStorage.setItem("need-refresh", true);
+	
 		$ionicModal.fromTemplateUrl('templates/modal.html', {
 			scope: $scope,
 			animation: 'slide-in-up'
@@ -799,7 +794,7 @@ var $body = $('body');
 
 	})
 	.controller("SearchCtrl", function($scope, $stateParams, $http, $rootScope) {
-		sessionStorage.setItem("need-refresh", true);
+		
 		$scope.val = $stateParams.val;
 			$scope.arr = [];
 			console.log($scope.val)

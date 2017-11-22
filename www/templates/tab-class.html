@@ -178,13 +178,13 @@
 	
 	<ion-content style="margin-top: 0.88rem;" id="scroll"  delegate-handle="mainScroll">
 		<ion-slide-box show-pager="false" auto-play="true" does-continue="true" slide-interval=3000>
-			<ion-slide>
+			<ion-slide ng-click="go_zhou()">
 				<div class="box blue"><img src="img/h5banner2.jpg" /></div>
 			</ion-slide>
-			<ion-slide>
+			<ion-slide  ng-click="go_lin()">
 				<div class="box yellow"><img src="img/h5banner.jpg" /></div>
 			</ion-slide>
-			<ion-slide on-slide-changed="slideHasChanged(index)">
+			<ion-slide on-slide-changed="slideHasChanged(index)" ng-click="go_qiu()">
 				<div class="box pink"><img src="img/h5banner1.jpg" /></div>
 			</ion-slide>
 		</ion-slide-box>

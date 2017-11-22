@@ -136,7 +136,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 
-						$scope.Chinese = sort_arr(result.list);
+						$scope.Chinese = sort_arr(result.list).reverse();
 
 						console.log($scope.Chinese)
 						len = $scope.Chinese.length
@@ -153,7 +153,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.Math = sort_arr(result.list);
+						$scope.Math = sort_arr(result.list).reverse();
 						len = $scope.Math.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -168,7 +168,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.English = sort_arr(result.list);
+						$scope.English = sort_arr(result.list).reverse();
 						len = $scope.English.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -183,7 +183,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.physical = sort_arr(result.list);
+						$scope.physical = sort_arr(result.list).reverse();
 						len = $scope.physical.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -198,7 +198,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.chemisty = sort_arr(result.list);
+						$scope.chemisty = sort_arr(result.list).reverse();
 						len = $scope.chemisty.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -213,7 +213,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.biology = sort_arr(result.list);
+						$scope.biology = sort_arr(result.list).reverse();
 						len = $scope.biology.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -228,7 +228,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.history = sort_arr(result.list);
+						$scope.history = sort_arr(result.list).reverse();
 						len = $scope.history.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -243,7 +243,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.politics = sort_arr(result.list);
+						$scope.politics = sort_arr(result.list).reverse();
 						len = $scope.politics.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -258,7 +258,7 @@ var $body = $('body');
 						}
 					}).success(function(result) {
 						console.log(result)
-						$scope.geograply = sort_arr(result.list);
+						$scope.geograply = sort_arr(result.list).reverse();
 						len = $scope.geograply.length;
 						$("#swiper-container3").css("height", len * 2.88 + "rem")
 
@@ -343,7 +343,7 @@ var $body = $('body');
 			}
 		}).success(function(result) {
 			console.log(result)
-			$scope.Chinese = sort_arr(result.list);
+			$scope.Chinese = sort_arr(result.list).reverse();
 			len = $scope.Chinese.length
 			$("#swiper-container3").css("height", len * 2.88 + "rem")
 		})
@@ -364,6 +364,16 @@ var $body = $('body');
 			}
 
 		}
+		$scope.go_zhou=function(){
+				window.location="#/tab/search/"+"周小茗"
+		}
+		$scope.go_lin=function(){
+				window.location="#/tab/search/"+"林政"
+		}
+		$scope.go_qiu=function(){
+				window.location="#/tab/search/"+"丘晓燕"
+		}
+		
 		$scope.gochoice=function(){
 			window.location="#/tab/search/"+"go_choice"
 		}
@@ -399,7 +409,7 @@ var $body = $('body');
 
 		}).success(function(result) {
                 console.log(result)
-			$scope.data = result.list
+			$scope.data = result.list.reverse()
 			for(var i = 0; i < $scope.data.length; i++) {
 				if($scope.data[i].avaitar == "") {
 					$scope.data[i].avaitar = "img/img1.png"
@@ -478,7 +488,10 @@ var $body = $('body');
 				   if($scope.data.length==0){
                 	$("ion-content").hide();
                 	$('.hide_box').show()
+                }else{
+                	 $scope.data=$scope.data.reverse()
                 }
+				  
 				console.log($scope.data)
 
 			})
@@ -501,16 +514,7 @@ var $body = $('body');
 			}).appendTo($body);
 		
 		
-		$http({
-			method: "GET",
-			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
-			data: {
-
-			}
-		}).success(function(result) {
-			console.log(result)
-
-		})
+		
 
 	})
 	.controller("Mine_listCtrl", function($scope, $http, $rootScope) {
@@ -812,10 +816,10 @@ var $body = $('body');
 			console.log(result)
 			for(var i = 0; i < result.list.length; i++) {
 			if(result.list[i].ishot==1){
-					$scope.arr.push(result.list[i])
+					$scope.arr.unshift(result.list[i])
 				}
 			}
-			$scope.data = $scope.arr.unique1()
+			$scope.data = $scope.arr
 
 		})
 		}else if($scope.val=="go_choice"){
@@ -839,10 +843,10 @@ var $body = $('body');
 			console.log(result)
 			for(var i = 0; i < result.list.length; i++) {
 				if(result.list[i].isroll==1){
-					$scope.arr.push(result.list[i])
+					$scope.arr.unshift(result.list[i])
 				}
 			}
-			$scope.data = $scope.arr.unique1()
+			$scope.data = $scope.arr
 
 		})
 		}
@@ -887,7 +891,7 @@ var $body = $('body');
 				$("ion-content").hide()
 				$(".hide_box").show()
 			}else{
-				$scope.data = $scope.arr.unique1();
+				$scope.data = $scope.arr.unique1().reverse();
 			}
 			
 			

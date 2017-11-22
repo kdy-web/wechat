@@ -7,7 +7,14 @@ angular.module('starter.controllers', [])
 			location.reload();
 
 		}
-
+var $body = $('body');
+			document.title = '在线课程';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
 		//微信    
 		//  $http({
 		//  	method:"GET",
@@ -112,7 +119,7 @@ angular.module('starter.controllers', [])
 
 		var mySwiper3 = new Swiper('#swiper-container3', {
 
-			autoHeight: true,
+			calculateHeight : true,
 			observer: true, //修改swiper自己或子元素时，自动初始化swiper
 			observeParents: true, //修改swiper的父元素时，自动初始化swiper
 			//滑动开始的时候触发
@@ -261,7 +268,8 @@ angular.module('starter.controllers', [])
 				$("#swiper-container3").css("height", len * 2.88 + "rem")
 
 				updateNavPosition()
-			},
+			}
+		
 
 		})
 
@@ -290,7 +298,7 @@ angular.module('starter.controllers', [])
 					newarr.push(arr_content)
 				}
 			}
-             newarr.splice(4)
+            newarr.splice(4)
 			return newarr;
 
 		}

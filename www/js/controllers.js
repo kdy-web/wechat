@@ -952,6 +952,14 @@ var $body = $('body');
 					$scope.video_data = data.list[i]
 				}
 			}
+			  var $body = $('body');
+			document.title = 	$scope.video_data.title;
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
 			console.log($scope.video_data)
 			$scope.url = $scope.video_data.url
 

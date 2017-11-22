@@ -411,8 +411,11 @@ var $body = $('body');
                 console.log(result)
 			$scope.data = result.list.reverse()
 			for(var i = 0; i < $scope.data.length; i++) {
-				if($scope.data[i].avaitar == "") {
-					$scope.data[i].avaitar = "img/img1.png"
+				if($scope.data[i].name=="朱庆"){
+					$scope.data.splice(i,1)
+				}
+				if($scope.data[i].name=="罗嘉民"){
+					$scope.data.splice(i,1)
 				}
 				
 			}

@@ -474,25 +474,15 @@ var $body = $('body');
 						$scope.data.push(result.list[i]);
 					}
 				}
+				
+				   if($scope.data.length==0){
+                	$("ion-content").hide();
+                	$('.hide_box').show()
+                }
 				console.log($scope.data)
 
 			})
-		} else {
-			$http({
-				method: "GET",
-				url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
-				data: {
-
-				}
-			}).success(function(result) {
-				console.log(result)
-
-				$scope.data = result.list
-                if($scope.data.length==0){
-                	$("ion-content").hide()
-                }
-			})
-		}
+		} 
 
 		$scope.govideo = function(id) {
 			console.log
@@ -538,7 +528,8 @@ var $body = $('body');
 
 			$scope.data = result.list
 			if($scope.data.length==0){
-				$("ion-content").hide()
+				$("ion-content").hide();
+				$('.hide_box').show()
 			}
 
 		})
@@ -894,6 +885,7 @@ var $body = $('body');
 			if($scope.arr.length==0){
 				console.log(1);
 				$("ion-content").hide()
+				$(".hide_box").show()
 			}else{
 				$scope.data = $scope.arr.unique1();
 			}

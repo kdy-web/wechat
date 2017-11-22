@@ -800,6 +800,15 @@ var $body = $('body');
 			$scope.arr = [];
 			console.log($scope.val)
 		if($scope.val=="go_hot"){
+			var $body = $('body');
+			document.title = '最热课程';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+			
 			$http({
 			method: "GET",
 			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
@@ -817,6 +826,16 @@ var $body = $('body');
 
 		})
 		}else if($scope.val=="go_choice"){
+			var $body = $('body');
+			document.title = '精选课程';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+			
+			
 				$http({
 			method: "GET",
 			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
@@ -836,6 +855,15 @@ var $body = $('body');
 		}
 		
 		else{
+			var $body = $('body');
+			document.title = '在线课程';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+			
 				$http({
 			method: "GET",
 			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",

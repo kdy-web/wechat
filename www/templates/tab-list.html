@@ -24,7 +24,18 @@
 			.item .item_box div {
 				float: left;
 			}
+				.hide_box{
+				width: 100%;
+				height: 100%;
+				position: relative;
+				text-align: center;
+				line-height: 12rem;
+				
+			}
 	</style>
+	<div class="hide_box">
+		<span>暂无数据</span>
+	</div>
 		<ion-content >
 			<a class="item"  ng-repeat="data in  data"   >
 				<div class="item_box"  ng-click="govideo(data.id)">

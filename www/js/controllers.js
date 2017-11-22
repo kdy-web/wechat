@@ -13,7 +13,9 @@ var $body = $('body');
 				setTimeout(function() {
 					$iframe.off('load').remove();
 				}, 0);
+				
 			}).appendTo($body);
+			$rootScope.range = "range=1"
 		//微信    
 		//  $http({
 		//  	method:"GET",
@@ -332,7 +334,7 @@ var $body = $('body');
 			$("#search_title").css("display", "block")
 		})
 
-		$rootScope.range = "range=1"
+		
 		$http({
 			method: "GET",
 			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=语文",
@@ -402,10 +404,7 @@ var $body = $('body');
 				if($scope.data[i].avaitar == "") {
 					$scope.data[i].avaitar = "img/img1.png"
 				}
-				if($scope.data[i].name=="朱庆"){
-					
-					$scope.data.splice(i,1)
-				}
+				
 			}
 
 			$("img").one("error", function(e) {
@@ -454,7 +453,7 @@ var $body = $('body');
 					$iframe.off('load').remove();
 				}, 0);
 			}).appendTo($body);
-		$rootScope.range = "rang=1"
+		
 		var index = window.location.hash.indexOf("?")
 		var search = window.location.hash.substr(index)
 
@@ -489,7 +488,9 @@ var $body = $('body');
 				console.log(result)
 
 				$scope.data = result.list
-
+                if($scope.data.length==0){
+                	$("ion-content").hide()
+                }
 			})
 		}
 
@@ -509,7 +510,7 @@ var $body = $('body');
 				}, 0);
 			}).appendTo($body);
 		
-		$rootScope.range = "rang=1"
+		
 		$http({
 			method: "GET",
 			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
@@ -525,10 +526,10 @@ var $body = $('body');
 	.controller("Mine_listCtrl", function($scope, $http, $rootScope) {
 		
 		
-		$rootScope.range = "rang=1"
+		
 		$http({
 			method: "GET",
-			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=''",
+			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
 			data: {
 
 			}
@@ -536,6 +537,9 @@ var $body = $('body');
 			console.log(result)
 
 			$scope.data = result.list
+			if($scope.data.length==0){
+				$("ion-content").hide()
+			}
 
 		})
 		$scope.govideo = function(id) {
@@ -573,7 +577,6 @@ var $body = $('body');
 
 		})
 
-		$rootScope.range = "rang=1";
 		$scope.id = $stateParams.id
 		console.log($scope.id)
 		$scope.myPopup = function() {
@@ -696,7 +699,7 @@ var $body = $('body');
 			window.location.reload()
 		}
 
-		$rootScope.range = "rang=1";
+		
 		$scope.id = $stateParams.id
 		console.log($scope.id)
 		$scope.myPopup = function() {
@@ -890,8 +893,7 @@ var $body = $('body');
 			}
 			if($scope.arr.length==0){
 				console.log(1);
-				var str='<p style="font-size:0.3rem;margin:0.1rem">无数据</p>'
-				$("ion-content").append(str)
+				$("ion-content").hide()
 			}else{
 				$scope.data = $scope.arr.unique1();
 			}
@@ -911,6 +913,7 @@ var $body = $('body');
 		}
 
 	}).controller("Mine_videoCtrl", function($scope, $ionicPopup, $http, $rootScope, $stateParams, $ionicModal) {
+		
 		$ionicModal.fromTemplateUrl('templates/modal.html', {
 			scope: $scope,
 			animation: 'slide-in-up'
@@ -937,7 +940,7 @@ var $body = $('body');
 			window.location.reload()
 		}
 
-		$rootScope.range = "rang=1";
+		
 		$scope.id = $stateParams.id
 		console.log($scope.id)
 		$scope.myPopup = function() {

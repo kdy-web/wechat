@@ -373,6 +373,16 @@ var $body = $('body');
 	})
 
 	.controller('TeacherCtrl', function($scope, $http, $rootScope) {
+                var $body = $('body');
+			document.title = '特级教师';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+
+
 
 		$scope.gotutorial = function(teacher_id) {
 
@@ -412,6 +422,15 @@ var $body = $('body');
 	})
 
 	.controller('MineCtrl', function($scope) {
+		   var $body = $('body');
+			document.title = '个人中心';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+		
 		$scope.goseen = function() {
 
 			window.location = "#/tab/mine_list"
@@ -428,6 +447,14 @@ var $body = $('body');
 	})
 
 	.controller("ListCtrl", function($scope, $rootScope, $http) {
+		   var $body = $('body');
+			document.title = '特级教师课程';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
 		$rootScope.range = "rang=1"
 		var index = window.location.hash.indexOf("?")
 		var search = window.location.hash.substr(index)
@@ -474,6 +501,15 @@ var $body = $('body');
 
 	})
 	.controller("BillsCtrl", function($scope, $rootScope, $http) {
+		   var $body = $('body');
+			document.title = '我的账单';
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+		
 		$rootScope.range = "rang=1"
 		$http({
 			method: "GET",
@@ -488,6 +524,8 @@ var $body = $('body');
 
 	})
 	.controller("Mine_listCtrl", function($scope, $http, $rootScope) {
+		
+		
 		$rootScope.range = "rang=1"
 		$http({
 			method: "GET",
@@ -507,7 +545,7 @@ var $body = $('body');
 	})
 
 	.controller("VideoCtrl", function($scope, $ionicPopup, $http, $rootScope, $stateParams, $ionicModal) {
-
+               
 		sessionStorage.setItem("need-refresh", true);
 		$ionicModal.fromTemplateUrl('templates/modal.html', {
 			scope: $scope,
@@ -577,7 +615,17 @@ var $body = $('body');
 				if(data.list[i].id == $scope.id) {
 					$scope.video_data = data.list[i]
 				}
-			}
+			} 
+			  var $body = $('body');
+			document.title =$scope.video_data.title ;
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+			
+			
 			console.log($scope.video_data)
 			$scope.url = $scope.video_data.url
 
@@ -691,6 +739,16 @@ var $body = $('body');
 					$scope.video_data = data.list[i]
 				}
 			}
+			   var $body = $('body');
+			document.title = 	$scope.video_data.title;
+			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+			$iframe.on('load', function() {
+				setTimeout(function() {
+					$iframe.off('load').remove();
+				}, 0);
+			}).appendTo($body);
+			
+			
 			console.log($scope.video_data)
 			$scope.url = $scope.video_data.url
 

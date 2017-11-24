@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
         sessionStorage.removeItem("need-refresh");
         location.reload();
     }
-    var url=window.location.href.split('#')[0]
+    var url=encodeURIComponent(window.location.href.split('#')[0])
     console.log(url)
            var $body = $('body');
 			document.title = '在线课程';
@@ -20,7 +20,7 @@ angular.module('starter.controllers', [])
 			$rootScope.range = "range=1"
 		//微信    
 		  $http({
-		  	method:"POST",
+		  	method:"GET",
 		  	url:"https://www.xueguoguo.cn/wxapi/WeChat?funcid=info",
 		  	data:{
 		  		
@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 		  	method:"POST",
 		  	url:"https://www.xueguoguo.cn/wxapi/WeChat?funcid=getSign",
 		  	data:{
-		  		url:encodeURIComponent(url)
+		  		url:url
 		  		
 		  	}
 		  }).success(function(result){

@@ -6,9 +6,9 @@ angular.module('starter.controllers', [])
         sessionStorage.removeItem("need-refresh");
         location.reload();
     }
-    var url=window.location.href
-    console.log(url.substr(0,28))
-var $body = $('body');
+    var url=window.location.href.split('#')[0]
+    console.log(url)
+           var $body = $('body');
 			document.title = '在线课程';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
 			$iframe.on('load', function() {
@@ -19,19 +19,31 @@ var $body = $('body');
 			}).appendTo($body);
 			$rootScope.range = "range=1"
 		//微信    
+		  $http({
+		  	method:"POST",
+		  	url:"https://www.xueguoguo.cn/wxapi/WeChat?funcid=info",
+		  	data:{
+		  		
+		  		
+		  	}
+		  }).success(function(result){
+		  	console.log(result)
+		  })
+		
+		
 		
 	  $http({
 		  	method:"POST",
 		  	url:"https://www.xueguoguo.cn/wxapi/WeChat?funcid=getSign",
 		  	data:{
-		  		url:url.substr(0,28)
+		  		url:url
 		  		
 		  	}
 		  }).success(function(result){
 		  	console.log(result);
 		  
 			wx.config({
-				debug: false,
+				debug: true,
 			    appId: 'wx520f5be3632ed6b7',
 				timestamp: result.timestamp,
 				nonceStr: result.noncestr,
@@ -46,7 +58,7 @@ var $body = $('body');
 				var shareData = {
 					title: '马富天博客_PHP博客_PHP Blog_PHP编程_分享PHP开发经验',	//	标题
 					desc: '马富天博客是个人独立博客专为学习php打造php教程技术,在马富天博客里可以找到你所需要的所有关于php技术解决文章方案,打造一个以技术经验为主题的分享平台!QQ:335134463',	//	描述
-					link: 'http://www.mafutian.net/',	//	分享的URL，必须和当前打开的网页的URL是一样的
+					link: encodeURIComponent(url),	//	分享的URL，必须和当前打开的网页的URL是一样的
 					imgUrl: 'http://www.mafutian.net/logo.jpg'	//	缩略图地址
 				};
 				wx.onMenuShareAppMessage(shareData);

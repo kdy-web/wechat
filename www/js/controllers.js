@@ -22,7 +22,7 @@ var $body = $('body');
 		
 	  $http({
 		  	method:"POST",
-		  	url:"http://www.xueguoguo.cn/wxapi/WeChat?funcid=getSign",
+		  	url:"https://www.xueguoguo.cn/wxapi/WeChat?funcid=getSign",
 		  	data:{
 		  		url:url.substr(0,28)
 		  		

@@ -6,6 +6,8 @@ angular.module('starter.controllers', [])
         sessionStorage.removeItem("need-refresh");
         location.reload();
     }
+    var url=window.location.href
+    console.log(url.substr(0,28))
 var $body = $('body');
 			document.title = '在线课程';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
@@ -17,44 +19,51 @@ var $body = $('body');
 			}).appendTo($body);
 			$rootScope.range = "range=1"
 		//微信    
-		//  $http({
-		//  	method:"GET",
-		//  	url:"https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=wx_card"+,
-		//  	data:{
-		//  		"access_token":"qLQhnfSMCogbnux7JLJ6x1fQd72MyySfuzXXndjQnmwFgI7lzV5a6SC56-kRlnVzez_-TgSL4rIJx1n_1dO7FZNmNlkGR56GEX0Ub7CFp_sZMScAAAIVB",
-		//  		
-		//  	}
-		//  }).success(function(result){
-		//  	console.log(result)
-		//  	
-		//  })
-		//  
-		//  
-//		wx.config({
-//				debug: false,
-//				appId: 'wx520f5be3632ed6b7',
-//				timestamp: now_time,
-//				nonceStr: 'tnZJBsdrUo88MFiB',
-//				signature: 'f94e850bf0f3fdf847dcc5f4a4c4de90',
-//				jsApiList: [
-//					'onMenuShareTimeline',
-//					'onMenuShareAppMessage'
-//				  ]
-//			});
-		//	wx.ready(function () {
-		//		console.log(1)
-		//		var shareData = {
-		//			title: '马富天博客_PHP博客_PHP Blog_PHP编程_分享PHP开发经验',	//	标题
-		//			desc: '马富天博客是个人独立博客专为学习php打造php教程技术,在马富天博客里可以找到你所需要的所有关于php技术解决文章方案,打造一个以技术经验为主题的分享平台!QQ:335134463',	//	描述
-		//			link: 'http://www.mafutian.net/',	//	分享的URL，必须和当前打开的网页的URL是一样的
-		//			imgUrl: 'http://www.mafutian.net/logo.jpg'	//	缩略图地址
-		//		};
-		//		wx.onMenuShareAppMessage(shareData);
-		//		wx.onMenuShareTimeline(shareData);
-		//	});
-		//	wx.error(function (res) {
-		//	 
-		//	});
+		
+	  $http({
+		  	method:"POST",
+		  	url:"http://www.xueguoguo.cn/wxapi/WeChat?funcid=getSign",
+		  	data:{
+		  		url:url.substr(0,28)
+		  		
+		  	}
+		  }).success(function(result){
+		  	console.log(result);
+		  
+			wx.config({
+				debug: false,
+			    appId: 'wx520f5be3632ed6b7',
+				timestamp: result.timestamp,
+				nonceStr: result.noncestr,
+				signature:result.signature ,
+				jsApiList: [
+					'onMenuShareTimeline',
+					'onMenuShareAppMessage'
+				  ]
+			});
+			wx.ready(function () {
+				console.log(1)
+				var shareData = {
+					title: '马富天博客_PHP博客_PHP Blog_PHP编程_分享PHP开发经验',	//	标题
+					desc: '马富天博客是个人独立博客专为学习php打造php教程技术,在马富天博客里可以找到你所需要的所有关于php技术解决文章方案,打造一个以技术经验为主题的分享平台!QQ:335134463',	//	描述
+					link: 'http://www.mafutian.net/',	//	分享的URL，必须和当前打开的网页的URL是一样的
+					imgUrl: 'http://www.mafutian.net/logo.jpg'	//	缩略图地址
+				};
+				wx.onMenuShareAppMessage(shareData);
+				wx.onMenuShareTimeline(shareData);
+			});
+			wx.error(function (res) {
+			 
+			});
+		  	
+		  	
+	  })
+		  
+	
+		  
+		  
+		  
+
 
 		var mySwiper2 = new Swiper('#swiper-container2', {
 			observer: true, //修改swiper自己或子元素时，自动初始化swiper
@@ -84,8 +93,8 @@ var $body = $('body');
 		var flag = true;
 		$('#scroll').scroll(function() {
 
-			if($ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top > 190) {
-
+			if($ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top > 177) {
+             
 				if(flag) {
 					var str = $('#swiper-container2')
 					$('#swiper-container2').remove()
@@ -101,7 +110,7 @@ var $body = $('body');
 
 			} else {
 				if(flag == false) {
-					console.log(1)
+					
 					var str = $('#swiper-container2');
 					$('#swiper-container2').remove()
 					$("#swiper-container3").before(str)
@@ -125,148 +134,8 @@ var $body = $('body');
 			observeParents: true, //修改swiper的父元素时，自动初始化swiper
 			//滑动开始的时候触发
 			onSlideChangeStart: function(swiper) {
-				console.log(swiper.activeIndex)
-				if(swiper.activeIndex == 0) {
-
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=语文",
-						data: {
-
-						}
-					}).success(function(result) {
-
-						$scope.Chinese = sort_arr(result.list).reverse();
-
-						console.log($scope.Chinese)
-						len = $scope.Chinese.length
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 1) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=数学",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.Math = sort_arr(result.list).reverse();
-						len = $scope.Math.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 2) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=英语",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.English = sort_arr(result.list).reverse();
-						len = $scope.English.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 3) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=物理",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.physical = sort_arr(result.list).reverse();
-						len = $scope.physical.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 4) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=生物",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.chemisty = sort_arr(result.list).reverse();
-						len = $scope.chemisty.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 5) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=化学",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.biology = sort_arr(result.list).reverse();
-						len = $scope.biology.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 6) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=历史",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.history = sort_arr(result.list).reverse();
-						len = $scope.history.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 7) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=政治",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.politics = sort_arr(result.list).reverse();
-						len = $scope.politics.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				} else if(swiper.activeIndex == 8) {
-					$http({
-						method: "GET",
-						url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=地理",
-						data: {
-
-						}
-					}).success(function(result) {
-						console.log(result)
-						$scope.geograply = sort_arr(result.list).reverse();
-						len = $scope.geograply.length;
-						$("#swiper-container3").css("height", len * 2.88 + "rem")
-
-					})
-
-				}
-
-				$("#swiper-container3").css("height", len * 2.88 + "rem")
+				
+			
 
 				updateNavPosition()
 			}
@@ -307,9 +176,11 @@ var $body = $('body');
 		var grade_flag = true;
 		$('.grade_btn').click(function() {
 			if(grade_flag) {
+				$("#down").animate({"transform":"rotate(180deg)"},200)
 				$('.grade_box').animate({"height":"2.1rem"},200);
 				grade_flag = false;
 			} else {
+				$("#down").animate({"transform":"rotate(0deg)"},200)
 				$('.grade_box').animate({"height":"0rem"},200);
 				grade_flag = true;
 			}
@@ -318,7 +189,7 @@ var $body = $('body');
 		window.event? window.event.returnValue = false : e.preventDefault();
 		var html=$(this).html()
 		$('.grade_btn span').html(html)
-		console.log(html)
+	
 		
 		})
 		
@@ -333,19 +204,66 @@ var $body = $('body');
 			$("#search").css("display", "none")
 			$("#search_title").css("display", "block")
 		})
-
+          $scope.Math=[];
+		$scope.Chinese=[];
+		$scope.English=[];
+		$scope.physical=[];
+		$scope.biology=[];
+		$scope.chemisty=[];
+		$scope.geograply=[];
+		$scope.history=[];
+		$scope.politics=[];
 		
 		$http({
 			method: "GET",
-			url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=语文",
+				url: "https://www.xueguoguo.cn/wxapi/Course?" + $rootScope.range + "&subject=",
 			data: {
 
 			}
 		}).success(function(result) {
-			console.log(result)
-			$scope.Chinese = sort_arr(result.list).reverse();
-			len = $scope.Chinese.length
-			$("#swiper-container3").css("height", len * 2.88 + "rem")
+			
+         for(var i=0;i<result.list.length;i++){
+				if(result.list[i].subject=="语文"){
+					$scope.Chinese.push(result.list[i])
+				}
+				if(result.list[i].subject=="数学"){
+					$scope.Math.push(result.list[i])
+				}
+				if(result.list[i].subject=="英语"){
+					$scope.English.push(result.list[i])
+				}
+				if(result.list[i].subject=="物理"){
+					$scope.physical.push(result.list[i])
+				}
+				if(result.list[i].subject=="化学"){
+					$scope.biology.push(result.list[i])
+				}
+				if(result.list[i].subject=="生物"){
+					$scope.chemisty.push(result.list[i])
+				}
+				if(result.list[i].subject=="地理"){
+					$scope.geograply.push(result.list[i])
+				}
+				if(result.list[i].subject=="历史"){
+					$scope.history.push(result.list[i])
+				}
+				if(result.list[i].subject=="政治"){
+					$scope.politics.push(result.list[i])
+				}
+
+			}
+          $scope.Chinese=sort_arr($scope.Chinese).reverse();
+          $scope.Math=sort_arr($scope.Math).reverse();
+          $scope.English=sort_arr($scope.English).reverse();
+          $scope.physical=sort_arr($scope.physical).reverse();
+          $scope.biology=sort_arr($scope.biology).reverse();
+          $scope.chemisty=sort_arr($scope.chemisty).reverse();
+          $scope.geograply=sort_arr($scope.geograply).reverse();
+           $scope.history=sort_arr($scope.history).reverse();
+            $scope.politics=sort_arr($scope.politics).reverse();
+		
+        len = $scope.Chinese.length
+		$("#swiper-container3").css("height", len  * 2.88+ "rem")
 		})
 
 		$scope.govideo = function(id) {
@@ -385,6 +303,7 @@ var $body = $('body');
 
 	.controller('TeacherCtrl', function($scope, $http, $rootScope) {
                 var $body = $('body');
+                $rootScope.range = "range=1"
 			document.title = '特级教师';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
 			$iframe.on('load', function() {
@@ -408,7 +327,7 @@ var $body = $('body');
 			}
 
 		}).success(function(result) {
-                console.log(result)
+             
 			$scope.data = result.list.reverse()
 			for(var i = 0; i < $scope.data.length; i++) {
 				if($scope.data[i].name=="朱庆"){
@@ -432,7 +351,8 @@ var $body = $('body');
 
 	})
 
-	.controller('MineCtrl', function($scope) {
+	.controller('MineCtrl', function($scope,$rootScope) {
+		$rootScope.range = "range=1"
 		   var $body = $('body');
 			document.title = '个人中心';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
@@ -458,6 +378,7 @@ var $body = $('body');
 	})
 
 	.controller("ListCtrl", function($scope, $rootScope, $http) {
+		$rootScope.range = "range=1"
 		   var $body = $('body');
 			document.title = '特级教师课程';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
@@ -495,18 +416,19 @@ var $body = $('body');
                 	 $scope.data=$scope.data.reverse()
                 }
 				  
-				console.log($scope.data)
+				
 
 			})
 		} 
 
 		$scope.govideo = function(id) {
-			console.log
+		
 			window.location = "#/tab/teacher_video/" + id
 		}
 
 	})
 	.controller("BillsCtrl", function($scope, $rootScope, $http) {
+		$rootScope.range = "range=1"
 		   var $body = $('body');
 			document.title = '我的账单';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');
@@ -521,7 +443,7 @@ var $body = $('body');
 
 	})
 	.controller("Mine_listCtrl", function($scope, $http, $rootScope) {
-		
+		$rootScope.range = "range=1"
 		
 		
 		$http({
@@ -531,7 +453,7 @@ var $body = $('body');
 
 			}
 		}).success(function(result) {
-			console.log(result)
+		
 
 			$scope.data = result.list
 			if($scope.data.length==0){
@@ -546,8 +468,8 @@ var $body = $('body');
 	})
 
 	.controller("VideoCtrl", function($scope, $ionicPopup, $http, $rootScope, $stateParams, $ionicModal) {
-               
-	
+             sessionStorage.setItem("need-refresh", true);  
+	$rootScope.range = "range=1"
 		$ionicModal.fromTemplateUrl('templates/modal.html', {
 			scope: $scope,
 			animation: 'slide-in-up'
@@ -570,13 +492,13 @@ var $body = $('body');
 
 		});
 		$scope.$on('$destroy', function() {
-			console.log('$destroy');
+			
 			$scope.modal_third.hide()
 
 		})
 
 		$scope.id = $stateParams.id
-		console.log($scope.id)
+		
 		$scope.myPopup = function() {
 
 			document.getElementById("media").pause();
@@ -610,7 +532,7 @@ var $body = $('body');
 
 			}
 		}).success(function(data) {
-			console.log(data)
+		
 			for(var i = 0; i < data.list.length; i++) {
 				if(data.list[i].id == $scope.id) {
 					$scope.video_data = data.list[i]
@@ -626,7 +548,7 @@ var $body = $('body');
 			}).appendTo($body);
 			
 			
-			console.log($scope.video_data)
+			
 			$scope.url = $scope.video_data.url
 
 			var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
@@ -642,7 +564,7 @@ var $body = $('body');
 			} else {
 
 				$('.playvideo').on("click", function() {
-					console.log(1)
+				
 					$scope.myPopup()
 				})
 			}
@@ -655,7 +577,7 @@ var $body = $('body');
 				localStorage.setItem(["time" + $scope.id], JSON.stringify($scope.video))
 			}
 			var timeJson = localStorage.getItem(["time" + $scope.id])
-			console.log(timeJson)
+		
 			document.getElementById("media").currentTime = JSON.parse(timeJson).video_time
 
 		})
@@ -672,6 +594,7 @@ var $body = $('body');
 
 	})
 	.controller("Teacher_videoCtrl", function($scope, $ionicPopup, $http, $rootScope, $stateParams, $ionicModal) {
+		$rootScope.range = "range=1"
 		$ionicModal.fromTemplateUrl('templates/modal.html', {
 			scope: $scope,
 			animation: 'slide-in-up'
@@ -699,7 +622,7 @@ var $body = $('body');
 
 		
 		$scope.id = $stateParams.id
-		console.log($scope.id)
+		
 		$scope.myPopup = function() {
 
 			document.getElementById("media").pause();
@@ -733,7 +656,7 @@ var $body = $('body');
 
 			}
 		}).success(function(data) {
-			console.log(data)
+		
 			for(var i = 0; i < data.list.length; i++) {
 				if(data.list[i].id == $scope.id) {
 					$scope.video_data = data.list[i]
@@ -749,7 +672,7 @@ var $body = $('body');
 			}).appendTo($body);
 			
 			
-			console.log($scope.video_data)
+			
 			$scope.url = $scope.video_data.url
 
 			var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
@@ -765,7 +688,7 @@ var $body = $('body');
 			} else {
 
 				$('.playvideo').on("click", function() {
-					console.log(1)
+				
 					$scope.myPopup()
 				})
 			}
@@ -778,7 +701,7 @@ var $body = $('body');
 				localStorage.setItem(["time" + $scope.id], JSON.stringify($scope.video))
 			}
 			var timeJson = localStorage.getItem(["time" + $scope.id])
-			console.log(timeJson)
+			
 			document.getElementById("media").currentTime = JSON.parse(timeJson).video_time
 
 		})
@@ -797,8 +720,9 @@ var $body = $('body');
 	.controller("SearchCtrl", function($scope, $stateParams, $http, $rootScope) {
 			sessionStorage.setItem("need-refresh", true);
 		$scope.val = $stateParams.val;
+		$rootScope.range = "range=1"
 			$scope.arr = [];
-			console.log($scope.val)
+		
 		if($scope.val=="go_hot"){
 			var $body = $('body');
 			document.title = '最热课程';
@@ -816,13 +740,14 @@ var $body = $('body');
 
 			}
 		}).success(function(result) {
-			console.log(result)
+			
 			for(var i = 0; i < result.list.length; i++) {
 			if(result.list[i].ishot==1){
 					$scope.arr.unshift(result.list[i])
 				}
 			}
 			$scope.data = $scope.arr
+			
 
 		})
 		}else if($scope.val=="go_choice"){
@@ -843,7 +768,7 @@ var $body = $('body');
 
 			}
 		}).success(function(result) {
-			console.log(result)
+			
 			for(var i = 0; i < result.list.length; i++) {
 				if(result.list[i].isroll==1){
 					$scope.arr.unshift(result.list[i])
@@ -871,7 +796,7 @@ var $body = $('body');
 
 			}
 		}).success(function(result) {
-			console.log(result)
+		
 			for(var i = 0; i < result.list.length; i++) {
 				if(result.list[i].brief.indexOf($scope.val) != -1) {
 					$scope.arr.push(result.list[i])
@@ -890,7 +815,7 @@ var $body = $('body');
 				}
 			}
 			if($scope.arr.length==0){
-				console.log(1);
+		
 				$("ion-content").hide()
 				$(".hide_box").show()
 			}else{
@@ -898,7 +823,7 @@ var $body = $('body');
 			}
 			
 			
-			console.log($scope.arr)
+		
             
 		})
 		}
@@ -912,7 +837,7 @@ var $body = $('body');
 		}
 
 	}).controller("Mine_videoCtrl", function($scope, $ionicPopup, $http, $rootScope, $stateParams, $ionicModal) {
-		
+		$rootScope.range = "range=1"
 		$ionicModal.fromTemplateUrl('templates/modal.html', {
 			scope: $scope,
 			animation: 'slide-in-up'
@@ -941,7 +866,7 @@ var $body = $('body');
 
 		
 		$scope.id = $stateParams.id
-		console.log($scope.id)
+		
 		$scope.myPopup = function() {
 
 			document.getElementById("media").pause();
@@ -975,7 +900,7 @@ var $body = $('body');
 
 			}
 		}).success(function(data) {
-			console.log(data)
+		
 			for(var i = 0; i < data.list.length; i++) {
 				if(data.list[i].id == $scope.id) {
 					$scope.video_data = data.list[i]
@@ -989,7 +914,7 @@ var $body = $('body');
 					$iframe.off('load').remove();
 				}, 0);
 			}).appendTo($body);
-			console.log($scope.video_data)
+			
 			$scope.url = $scope.video_data.url
 
 			var video_str = '<video id="media"  x-webkit-airplay="true" x5-video-player-type="true"  playsinline webkit-playsinline="true"><source src="' + $scope.url + '" type="video/mp4"> 您的浏览器不支持HTML5视频</video>'
@@ -1005,7 +930,7 @@ var $body = $('body');
 			} else {
 
 				$('.playvideo').on("click", function() {
-					console.log(1)
+				
 					$scope.myPopup()
 				})
 			}
@@ -1018,7 +943,7 @@ var $body = $('body');
 				localStorage.setItem(["time" + $scope.id], JSON.stringify($scope.video))
 			}
 			var timeJson = localStorage.getItem(["time" + $scope.id])
-			console.log(timeJson)
+			
 			document.getElementById("media").currentTime = JSON.parse(timeJson).video_time
 
 		})

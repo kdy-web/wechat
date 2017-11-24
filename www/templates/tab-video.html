@@ -23,6 +23,7 @@
 				font-size: 0.34rem;
 				color: #FFFFFF;
 				letter-spacing: 0;
+				
 			}
 			
 			.content_title {
@@ -68,6 +69,8 @@
 				float: left;
 				margin-left: 0.4rem;
 				height: 100%;
+				position: relative;
+				top: 0.15rem;
 			}
 			
 			.title_content li {
@@ -365,12 +368,12 @@ font-weight: bold;
 			<div class="content">
 				{{video_data.brief}}
 			</div>
-            <div style="height: 1rem;"></div>
+            <div style="height: 0.5rem;"></div>
 		</ion-content>
-		<div class="bar bar-footer buy_box" style="height: 1rem;" ng-click="myPopup()">
-			<button class="button button-clear">Left</button>
-			<div class="title">下载APP看视频</div>
-			<button class="button button-clear">Right</button>
+		<div class="bar bar-footer buy_box"  ng-click="myPopup()">
+		
+			<div class="title" >下载APP看视频</div>
+			
 		</div>
 		<script id="templates/modal.html" type="text/ng-template">
   	 <div id="add-view" class="modal slide-in-up"  style="background:rgba(0,0,0,0.5)" ng-click="modal.hide()">

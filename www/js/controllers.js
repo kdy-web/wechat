@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
         sessionStorage.removeItem("need-refresh");
         location.reload();
     }
-    var url=encodeURIComponent(window.location.href.split('#')[0])
+    var url=encodeURIComponent(window.location.href.split('#')[0]+"/")
     console.log(url)
            var $body = $('body');
 			document.title = '在线课程';
@@ -65,7 +65,7 @@ angular.module('starter.controllers', [])
 				wx.onMenuShareTimeline(shareData);
 			});
 			wx.error(function (res) {
-			 
+			 console.log(res)
 			});
 		  	
 		  	

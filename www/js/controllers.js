@@ -6,8 +6,12 @@ angular.module('starter.controllers', [])
         sessionStorage.removeItem("need-refresh");
         location.reload();
     }
-    var url=encodeURIComponent(window.location.href.split('#')[0]+"/")
-    console.log(url)
+    var old=window.location.href.split('#')[0]
+    
+    
+    var url=encodeURIComponent(window.location.href.split('#')[0]);
+    alert(window.location.href.split('#')[0])
+    console.log(old)
            var $body = $('body');
 			document.title = '在线课程';
 			var $iframe = $('<iframe src="/favicon.ico"></iframe>');

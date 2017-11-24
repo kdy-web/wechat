@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 		  	method:"POST",
 		  	url:"https://www.xueguoguo.cn/wxapi/WeChat?funcid=getSign",
 		  	data:{
-		  		url:url
+		  		url:encodeURIComponent(url)
 		  		
 		  	}
 		  }).success(function(result){

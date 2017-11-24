@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
     var old=window.location.href.split('#')[0]
     
     
-    var url=encodeURIComponent(window.location.href.split('#')[1]);
+    var url=encodeURIComponent(window.location.href.split('#')[0]+window.location.href.split('#')[1]);
     alert(window.location.href.split('#')[1])
     console.log(old)
            var $body = $('body');
